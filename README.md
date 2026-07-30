@@ -80,6 +80,10 @@ const svg = renderLogoSvg({
 `renderCrestSvg({ variant })` does the same for the Alumni crest, where `variant` is `'full'` for
 the original gold/green/black artwork or a colour to flatten it to one ink.
 
+> The crest is **API-only and deliberately absent from the generator site**. It is a separate mark
+> with its own usage rules, so it is not offered for free recolouring and download; apps that
+> legitimately need it (such as the door-sign generator) use it through this API.
+
 `renderLogoMarkup()` / `renderCrestMarkup()` return just the drawable fragment, for embedding in a
 larger SVG rather than producing a standalone file.
 

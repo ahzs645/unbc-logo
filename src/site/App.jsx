@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   BRAND_COLORS,
   EXPORT_FORMATS,
@@ -9,13 +9,16 @@ import {
   exportLogo,
   isFormatSupported,
   measureDepartmentText,
-  renderCrestSvg,
   renderLogoSvg,
   resolveColor,
   searchDepartmentPresets,
   splitDepartmentText,
   DEPARTMENT_LINE
 } from '../index.js'
+
+// This site builds the wordmark lockup only. The Alumni crest is a separate mark with its own
+// usage rules, so it is deliberately not offered here for free recolouring and download —
+// renderCrestSvg() and <AlumniCrest> remain available to apps that need it.
 
 const CUSTOM = 'custom'
 
@@ -30,11 +33,6 @@ const BACKGROUND_CHOICES = [
   { value: 'green', label: 'Green', swatch: BRAND_COLORS.green },
   { value: 'white', label: 'White', swatch: BRAND_COLORS.white },
   { value: 'black', label: 'Black', swatch: BRAND_COLORS.black }
-]
-
-const CREST_CHOICES = [
-  { value: 'full', label: 'Full colour', swatch: '#c2952d' },
-  ...COLOR_CHOICES
 ]
 
 // A colour control is either one of the named brand variants or a free-form hex value.
@@ -97,7 +95,6 @@ const ColorField = ({ label, choices, control, extraChoices = [] }) => (
 )
 
 export const App = () => {
-  const [mark, setMark] = useState('logo')
   const [departmentText, setDepartmentText] = useState('School of Engineering')
   const [search, setSearch] = useState('')
   const [padding, setPadding] = useState(8)
@@ -109,9 +106,6 @@ export const App = () => {
   const logoColor = useColorChoice('white')
   const departmentColor = useColorChoice('match')
   const background = useColorChoice('green')
-  const crest = useColorChoice('full')
-
-  const isCrest = mark === 'crest'
 
   const results = useMemo(() => searchDepartmentPresets(search, 12), [search])
 
@@ -124,26 +118,19 @@ export const App = () => {
     [lines]
   )
 
-  const svgOptions = useMemo(() => (isCrest
-    ? { mark: 'crest', variant: crest.value, background: background.value, padding }
-    : {
-      mark: 'logo',
-      departmentText,
-      color: logoColor.value,
-      // 'match' means "follow the logo colour" — pass nothing and let the renderer default.
-      departmentColor: departmentColor.choice === 'match' ? undefined : departmentColor.value,
-      background: background.value,
-      padding
-    }
-  ), [isCrest, crest.value, departmentText, logoColor.value, departmentColor.choice,
-    departmentColor.value, background.value, padding])
+  const svgOptions = useMemo(() => ({
+    departmentText,
+    color: logoColor.value,
+    // 'match' means "follow the logo colour" — pass nothing and let the renderer default.
+    departmentColor: departmentColor.choice === 'match' ? undefined : departmentColor.value,
+    background: background.value,
+    padding
+  }), [departmentText, logoColor.value, departmentColor.choice, departmentColor.value,
+    background.value, padding])
 
-  const previewSvg = useMemo(
-    () => (isCrest ? renderCrestSvg(svgOptions) : renderLogoSvg(svgOptions)),
-    [isCrest, svgOptions]
-  )
+  const previewSvg = useMemo(() => renderLogoSvg(svgOptions), [svgOptions])
 
-  const fileName = buildFileName({ ...svgOptions, color: logoColor.value, format })
+  const fileName = buildFileName({ ...svgOptions, format })
 
   const supported = useMemo(
     () => Object.fromEntries(EXPORT_FORMAT_ORDER.map((key) => [key, isFormatSupported(key)])),
@@ -152,8 +139,7 @@ export const App = () => {
 
   // A transparent export of a white mark is technically correct but looks blank in most viewers.
   const invisibleWarning = background.choice === 'none' &&
-    resolveColor(isCrest ? crest.value : logoColor.value).toLowerCase() === '#ffffff' &&
-    !(isCrest && crest.value === 'full')
+    resolveColor(logoColor.value).toLowerCase() === '#ffffff'
 
   useEffect(() => {
     if (!status) return undefined
@@ -164,7 +150,7 @@ export const App = () => {
   const handleExport = async () => {
     setBusy(true)
     try {
-      const saved = await exportLogo({ ...svgOptions, format, pixelWidth, color: logoColor.value })
+      const saved = await exportLogo({ ...svgOptions, format, pixelWidth })
       setStatus({ tone: 'ok', message: `Saved ${saved}` })
     } catch (error) {
       setStatus({ tone: 'bad', message: error.message })
@@ -199,7 +185,9 @@ export const App = () => {
             dangerouslySetInnerHTML={{ __html: previewSvg }}
           />
           <div className="stage-meta">
-            <span>{isCrest ? 'Alumni crest' : `${lines.length || 'No'} department line${lines.length === 1 ? '' : 's'}`}</span>
+            <span>
+              {lines.length || 'No'} department line{lines.length === 1 ? '' : 's'}
+            </span>
             <code>{fileName}</code>
           </div>
           {overflowing.length > 0 && (
@@ -218,94 +206,65 @@ export const App = () => {
 
         <section className="panel controls" aria-label="Lockup options">
           <div className="field">
-            <span className="field__label">Mark</span>
-            <div className="chips">
-              <button
-                type="button"
-                className={`chip${!isCrest ? ' chip--on' : ''}`}
-                onClick={() => setMark('logo')}
-              >
-                Wordmark lockup
-              </button>
-              <button
-                type="button"
-                className={`chip${isCrest ? ' chip--on' : ''}`}
-                onClick={() => setMark('crest')}
-              >
-                Alumni crest
-              </button>
-            </div>
+            <label className="field__label" htmlFor="department">Department line</label>
+            <textarea
+              id="department"
+              className="input input--area"
+              rows={3}
+              value={departmentText}
+              placeholder="School of Engineering"
+              onChange={(event) => setDepartmentText(event.target.value)}
+            />
+            <p className="hint">
+              Wraps automatically at {DEPARTMENT_LINE.maxWidth} units. Press Enter to force
+              a line break.
+            </p>
           </div>
 
-          {!isCrest && (
-            <>
-              <div className="field">
-                <label className="field__label" htmlFor="department">Department line</label>
-                <textarea
-                  id="department"
-                  className="input input--area"
-                  rows={3}
-                  value={departmentText}
-                  placeholder="School of Engineering"
-                  onChange={(event) => setDepartmentText(event.target.value)}
-                />
-                <p className="hint">
-                  Wraps automatically at {DEPARTMENT_LINE.maxWidth} units. Press Enter to force
-                  a line break.
-                </p>
-              </div>
+          <div className="field">
+            <label className="field__label" htmlFor="preset-search">
+              Department presets <span className="count">{departmentPresets.length}</span>
+            </label>
+            <input
+              id="preset-search"
+              type="search"
+              className="input"
+              value={search}
+              placeholder="Search faculties, schools, departments…"
+              onChange={(event) => setSearch(event.target.value)}
+            />
+            {search.trim() && (
+              <ul className="results">
+                {results.length === 0 && <li className="results__empty">No match</li>}
+                {results.map((preset) => (
+                  <li key={preset.id}>
+                    <button
+                      type="button"
+                      className="result"
+                      onClick={() => {
+                        setDepartmentText(preset.label)
+                        setSearch('')
+                      }}
+                    >
+                      <span className="result__label">{preset.label}</span>
+                      <span className="result__path">{preset.path}</span>
+                      <span className="result__lines">
+                        {preset.lines.length} line{preset.lines.length === 1 ? '' : 's'}
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
-              <div className="field">
-                <label className="field__label" htmlFor="preset-search">
-                  Department presets <span className="count">{departmentPresets.length}</span>
-                </label>
-                <input
-                  id="preset-search"
-                  type="search"
-                  className="input"
-                  value={search}
-                  placeholder="Search faculties, schools, departments…"
-                  onChange={(event) => setSearch(event.target.value)}
-                />
-                {search.trim() && (
-                  <ul className="results">
-                    {results.length === 0 && <li className="results__empty">No match</li>}
-                    {results.map((preset) => (
-                      <li key={preset.id}>
-                        <button
-                          type="button"
-                          className="result"
-                          onClick={() => {
-                            setDepartmentText(preset.label)
-                            setSearch('')
-                          }}
-                        >
-                          <span className="result__label">{preset.label}</span>
-                          <span className="result__path">{preset.path}</span>
-                          <span className="result__lines">
-                            {preset.lines.length} line{preset.lines.length === 1 ? '' : 's'}
-                          </span>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              <ColorField label="Logo colour" choices={COLOR_CHOICES} control={logoColor} />
-              <ColorField
-                label="Department text colour"
-                choices={COLOR_CHOICES}
-                control={departmentColor}
-                extraChoices={[{ value: 'match', label: 'Match logo', swatch: undefined }]}
-              />
-            </>
-          )}
-
-          {isCrest && (
-            <ColorField label="Crest colour" choices={CREST_CHOICES} control={crest} />
-          )}
-
+          <ColorField label="Logo colour" choices={COLOR_CHOICES} control={logoColor} />
+          <ColorField
+            label="Department text colour"
+            choices={COLOR_CHOICES}
+            control={departmentColor}
+            extraChoices={[{ value: 'match', label: 'Match logo', swatch: undefined }]}
+          />
           <ColorField label="Background" choices={BACKGROUND_CHOICES} control={background} />
 
           <div className="field">
