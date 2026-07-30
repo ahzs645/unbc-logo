@@ -1,0 +1,404 @@
+/* Standalone generator site. Scoped entirely to the site — nothing here ships with the package. */
+
+/* The wordmark is outlined paths; the department line is the lockup's only text and renders at
+   weight 800, which resolves to this face. Loading the Roman/Bold/Italic faces here too would
+   add ~1.2MB to the site for glyphs it never draws. */
+@font-face {
+    font-family: 'HelveticaNeueUNBC';
+    src: url('../../fonts/HelveticaNeueBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --green: #035642;
+    --green-dark: #024d38;
+    --surface: #ffffff;
+    --surface-muted: #f6f8f7;
+    --border: #e3e8e6;
+    --text: #14201c;
+    --text-muted: #63736d;
+    --radius: 14px;
+    --radius-sm: 9px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --surface: #131a18;
+        --surface-muted: #0d1211;
+        --border: #263230;
+        --text: #e7efec;
+        --text-muted: #93a49e;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--surface-muted);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 32px 20px 56px;
+}
+
+.masthead h1 {
+    margin: 0 0 6px;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+}
+
+.masthead p {
+    margin: 0 0 28px;
+    max-width: 62ch;
+    color: var(--text-muted);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+.controls {
+    display: grid;
+    gap: 18px;
+}
+
+/* ── Preview stage ─────────────────────────────────────────────────────────────────────── */
+
+.stage {
+    display: grid;
+    place-items: center;
+    min-height: 260px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-muted);
+    overflow: hidden;
+}
+
+/* Checkerboard makes a transparent background legible rather than looking like a white one. */
+.stage--checker {
+    background-color: #ffffff;
+    background-image:
+        linear-gradient(45deg, #dfe5e3 25%, transparent 25%, transparent 75%, #dfe5e3 75%),
+        linear-gradient(45deg, #dfe5e3 25%, transparent 25%, transparent 75%, #dfe5e3 75%);
+    background-size: 18px 18px;
+    background-position: 0 0, 9px 9px;
+}
+
+.stage svg {
+    width: 100%;
+    height: auto;
+    max-height: 340px;
+}
+
+.stage-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.stage-meta code {
+    font-size: 0.78rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    word-break: break-all;
+}
+
+/* ── Fields ────────────────────────────────────────────────────────────────────────────── */
+
+.field {
+    display: grid;
+    gap: 8px;
+}
+
+.field__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.count {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.hint {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.input {
+    width: 100%;
+    padding: 9px 12px;
+    font: inherit;
+    font-size: 0.92rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.input:focus-visible {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(3, 86, 66, 0.16);
+}
+
+.input--area {
+    resize: vertical;
+    min-height: 72px;
+    font-family: inherit;
+}
+
+.input--hex {
+    max-width: 130px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.custom-color {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.custom-color input[type='color'] {
+    width: 40px;
+    height: 36px;
+    padding: 2px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    cursor: pointer;
+}
+
+input[type='range'] {
+    width: 100%;
+    accent-color: var(--green);
+}
+
+/* ── Chips ─────────────────────────────────────────────────────────────────────────────── */
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: border-color 0.14s, background 0.14s;
+}
+
+.chip:hover:not(:disabled) {
+    border-color: var(--green);
+}
+
+.chip--on {
+    background: var(--green);
+    border-color: var(--green);
+    color: #ffffff;
+}
+
+.chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.swatch {
+    width: 13px;
+    height: 13px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+}
+
+.swatch--transparent {
+    background:
+        linear-gradient(45deg, #c9d2cf 25%, transparent 25%, transparent 75%, #c9d2cf 75%),
+        linear-gradient(45deg, #c9d2cf 25%, transparent 25%, transparent 75%, #c9d2cf 75%),
+        #ffffff;
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+}
+
+/* ── Preset results ────────────────────────────────────────────────────────────────────── */
+
+.results {
+    list-style: none;
+    margin: 0;
+    padding: 4px;
+    max-height: 260px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-muted);
+}
+
+.results__empty {
+    padding: 10px 12px;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+}
+
+.result {
+    display: grid;
+    gap: 2px;
+    width: 100%;
+    padding: 8px 10px;
+    font: inherit;
+    text-align: left;
+    color: var(--text);
+    background: none;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.result:hover,
+.result:focus-visible {
+    background: var(--surface);
+    outline: none;
+}
+
+.result__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.result__path,
+.result__lines {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ── Actions and notices ───────────────────────────────────────────────────────────────── */
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding-top: 4px;
+}
+
+.button {
+    flex: 1 1 auto;
+    padding: 11px 18px;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--green);
+    border: 1px solid var(--green);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.14s;
+}
+
+.button:hover:not(:disabled) {
+    background: var(--green-dark);
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: progress;
+}
+
+.button--ghost {
+    flex: 0 0 auto;
+    color: var(--green);
+    background: transparent;
+}
+
+.button--ghost:hover {
+    background: rgba(3, 86, 66, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+    .button--ghost {
+        color: #7fd4b6;
+        border-color: #2f4a41;
+    }
+}
+
+.notice {
+    margin: 12px 0 0;
+    padding: 9px 12px;
+    font-size: 0.84rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-muted);
+}
+
+.notice--warn {
+    border-color: #e2b33d;
+    background: rgba(226, 179, 61, 0.12);
+}
+
+.notice--ok {
+    border-color: var(--green);
+    background: rgba(3, 86, 66, 0.1);
+}
+
+.footer {
+    margin-top: 28px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.footer code {
+    font-size: 0.8rem;
+}

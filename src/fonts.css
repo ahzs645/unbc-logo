@@ -1,0 +1,36 @@
+/* Brand typeface for the lockup's department line. Import this once in a consuming app:
+   `import '@ahzs645/unbc-logo/fonts.css'` — or copy the rules if your build resolves fonts
+   differently. The wordmark itself is outlined paths and needs no font. */
+
+@font-face {
+    font-family: 'HelveticaNeueUNBC';
+    src: url('../fonts/HelveticaNeueRoman.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueUNBC';
+    src: url('../fonts/HelveticaNeueItalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueUNBC';
+    src: url('../fonts/HelveticaNeueBold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* The department line renders at weight 800, which resolves to this face. */
+@font-face {
+    font-family: 'HelveticaNeueUNBC';
+    src: url('../fonts/HelveticaNeueBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}

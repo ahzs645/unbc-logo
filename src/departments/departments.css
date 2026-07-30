@@ -1,0 +1,187 @@
+/* Styles for the UNBC department selector. Assumes the host provides basic form-control
+   styling (.form-group, label, input); these rules add the search + selection-display chrome. */
+
+.search-input {
+    position: relative;
+}
+
+.search-input:focus {
+    border-color: #035642;
+    box-shadow: 0 0 0 3px rgba(3, 86, 66, 0.1);
+}
+
+.search-results {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: var(--ui-surface, #ffffff);
+    border: 1px solid var(--ui-border, #e5e7eb);
+    border-radius: var(--ui-radius-sm, 10px);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 9999;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+}
+
+.search-result-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
+}
+
+.search-result-item:hover {
+    background-color: #f0fdf4;
+    border-left: 3px solid #035642;
+    padding-left: 12px;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item.no-results {
+    color: #64748b;
+    font-style: italic;
+    cursor: default;
+}
+
+.search-result-item.no-results:hover {
+    background-color: transparent;
+}
+
+.search-result-path {
+    font-size: 0.9rem;
+    color: #4a5568;
+    line-height: 1.4;
+}
+
+.search-result-detail {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* Department Selection Display */
+.department-selection-display {
+    margin: 20px 0;
+    padding: 16px;
+    background: var(--brand-green, #035642);
+    border-radius: var(--ui-radius-sm, 10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.department-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    color: white;
+}
+
+.department-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.department-title strong {
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.department-type-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.department-path {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    line-height: 1.4;
+}
+
+.department-level {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.department-level.type {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-transform: capitalize;
+}
+
+.department-level.main {
+    background: rgba(255, 255, 255, 0.15);
+    color: #f0f9ff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.department-level.sub {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0f2fe;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.department-level.subsub {
+    background: rgba(255, 255, 255, 0.05);
+    color: #cffafe;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.department-arrow {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+    font-size: 1.2rem;
+    align-self: center;
+    transform: rotate(90deg);
+    margin: -4px 0;
+}
+
+body.dark-mode .search-results {
+    background: #111827;
+    border-color: #1f2937;
+}
+
+body.dark-mode .search-result-item {
+    border-bottom: 1px solid #1f2937;
+    color: #e2e8f0;
+}
+
+body.dark-mode .search-result-item:hover {
+    background-color: rgba(34, 197, 94, 0.15);
+    border-left-color: #22c55e;
+}
+
+body.dark-mode .search-result-item.no-results {
+    color: #94a3b8;
+}
+
+body.dark-mode .search-result-path {
+    color: #e2e8f0;
+}
+
+body.dark-mode .search-result-detail {
+    color: #94a3b8;
+}
