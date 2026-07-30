@@ -204,8 +204,8 @@ adding a department updates both the drill-down selector and the preset list.
 family. The wordmark itself is outlined paths and needs no font — only the department line renders
 as text, at weight 800.
 
-> These are **licensed commercial fonts**. This repository is private for that reason. Confirm
-> your licence covers redistribution before making it public.
+> These are **licensed commercial fonts**, redistributed here on the same basis as the UNBCDoor
+> repository they came from. Check your licence before relying on them in a new context.
 
 ---
 
@@ -241,11 +241,10 @@ npm run build:assets   # regenerate src/assets/markup.js from the SVGs
 ## Deployment
 
 `.github/workflows/pages.yml` builds and publishes the generator site to GitHub Pages on every
-push to `main`.
+push to `main`, with *Settings → Pages → Source* set to **GitHub Actions**.
 
-**It will not run while this repository is private** — GitHub Pages requires a public repository
-or a paid plan. To turn the site on, either make the repository public (check the font licence
-first) or upgrade the plan, then enable Pages under *Settings → Pages → Source: GitHub Actions*.
+**Live at <https://ahzs645.github.io/unbc-logo/>.**
 
 The site is served from `/unbc-logo/`; that prefix is set as Vite's `base` and must match the
-repository name.
+repository name. Renaming the repository means updating `base` in `vite.config.js` to match, or
+the built assets 404.
