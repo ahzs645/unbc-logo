@@ -243,7 +243,8 @@ npm run build:assets   # regenerate src/assets/markup.js from the SVGs
 `.github/workflows/pages.yml` builds and publishes the generator site to GitHub Pages on every
 push to `main`, with *Settings → Pages → Source* set to **GitHub Actions**.
 
-**Live at <https://ahzs645.github.io/unbc-logo/>.**
+**Live at <http://projects.ahmadjalil.com/unbc-logo/>** — the account's custom domain, so project
+sites are served from `<domain>/<repo>/` rather than `ahzs645.github.io`.
 
 The site is served from `/unbc-logo/`; that prefix is set as Vite's `base` and must match the
 repository name. Renaming the repository means updating `base` in `vite.config.js` to match, or
