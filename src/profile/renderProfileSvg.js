@@ -39,6 +39,11 @@ export const PROFILE_LAYOUT = {
   }
 }
 
+// The caption is Helvetica Neue Black — the same face as the lockup's department line and UNBC's
+// web display type. Rendered large and downsampled to 150px, Black at 13 units matches the
+// reference avatars' caption in width and ink weight; Bold is visibly too light at any size that
+// matches the width. (Measuring glyphs rendered *at* 150px misleads: hinting rounds advances.)
+//
 // HelveticaNeue Black's cap height and descent, as fractions of the em.
 const CAP_HEIGHT = 0.7
 const DESCENT = 0.17
