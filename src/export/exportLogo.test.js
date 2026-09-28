@@ -44,3 +44,10 @@ test('only JPEG is declared as lacking an alpha channel', () => {
   assert.equal(EXPORT_FORMATS.png.alpha, true)
   assert.equal(EXPORT_FORMATS.webp.alpha, true)
 })
+
+test('marks square exports in the filename', () => {
+  assert.equal(
+    buildFileName({ departmentText: 'Physics', color: 'green', square: true, format: 'png' }),
+    'unbc-logo-physics-green-square.png'
+  )
+})

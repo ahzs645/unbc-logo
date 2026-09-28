@@ -21,6 +21,15 @@ export {
   CREST_VIEWBOX
 } from './logo/renderLogoSvg.js'
 
+// ── Social-media profile picture (framework-free) ──────────────────────────────────────────
+export {
+  renderProfileSvg,
+  layoutProfileCaption,
+  findCircleCropOverflow,
+  PROFILE_COLORS,
+  PROFILE_LAYOUT
+} from './profile/renderProfileSvg.js'
+
 // ── Text layout: the wrapping rules the lockup must obey ─────────────────────────────────────
 export {
   splitDepartmentText,
@@ -49,7 +58,8 @@ export {
   isFormatSupported,
   EXPORT_FORMATS,
   EXPORT_FORMAT_ORDER,
-  SIZE_PRESETS
+  SIZE_PRESETS,
+  PROFILE_SIZE_PRESETS
 } from './export/exportLogo.js'
 export { getEmbeddedFontCss, BRAND_FONT_FAMILY } from './export/fontEmbed.js'
 

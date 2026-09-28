@@ -5,6 +5,7 @@
 // any size because the vector is rasterized at the target resolution rather than upscaled.
 
 import { renderCrestSvg, renderLogoSvg } from '../logo/renderLogoSvg.js'
+import { renderProfileSvg } from '../profile/renderProfileSvg.js'
 import { getEmbeddedFontCss } from './fontEmbed.js'
 
 export const EXPORT_FORMATS = {
@@ -19,6 +20,10 @@ export const EXPORT_FORMAT_ORDER = ['svg', 'png', 'webp', 'jpeg']
 
 // Raster size presets, in pixels of lockup width.
 export const SIZE_PRESETS = [512, 1024, 2048, 4096]
+
+// Square sizes for profile pictures: X/Twitter's 400, LinkedIn/Facebook-friendly 800, Instagram's
+// 1080, and a large master.
+export const PROFILE_SIZE_PRESETS = [400, 800, 1080, 2048]
 
 const DEFAULT_PIXEL_WIDTH = 1024
 
@@ -44,18 +49,24 @@ const slugify = (value) => (value == null ? '' : String(value))
   .replace(/^-+|-+$/g, '')
   .slice(0, 60)
 
-export const buildFileName = ({ departmentText, color, variant, mark = 'logo', format }) => {
-  // The crest is coloured by `variant`, the wordmark by `color`.
-  const tone = mark === 'crest' ? (variant || 'full') : (color || 'white')
-  const parts = ['unbc', mark, slugify(departmentText), slugify(tone)].filter(Boolean)
+export const buildFileName = ({ departmentText, color, variant, mark = 'logo', square, format }) => {
+  // The crest is coloured by `variant`, the wordmark by `color`; a profile picture has no single
+  // tone worth naming.
+  const tone = mark === 'crest' ? (variant || 'full') : mark === 'profile' ? '' : (color || 'white')
+  const parts = ['unbc', mark, slugify(departmentText), slugify(tone), square && 'square']
+    .filter(Boolean)
   return `${parts.join('-')}.${EXPORT_FORMATS[format]?.extension || format}`
 }
 
-// Builds the SVG source for either mark, with the brand font embedded so the result is
-// self-contained. `mark` is 'logo' (the wordmark lockup) or 'crest' (the Alumni badge).
+const RENDERERS = { logo: renderLogoSvg, crest: renderCrestSvg, profile: renderProfileSvg }
+
+// Builds the SVG source for any mark, with the brand font embedded so the result is
+// self-contained. `mark` is 'logo' (the wordmark lockup), 'crest' (the Alumni badge), or
+// 'profile' (the square social-media avatar).
 export const buildSvgSource = async ({ mark = 'logo', ...options } = {}) => {
+  const render = RENDERERS[mark]
+  if (!render) throw new Error(`Unknown mark: ${mark}`)
   const fontCss = mark === 'crest' ? undefined : await getEmbeddedFontCss()
-  const render = mark === 'crest' ? renderCrestSvg : renderLogoSvg
   return render({ ...options, fontCss })
 }
 
@@ -103,7 +114,7 @@ const rasterize = async (svgSource, { mimeType, quality, background }) => {
  * Renders a lockup to a Blob in the requested format.
  *
  * @param {object} options              Everything renderLogoSvg() accepts, plus:
- * @param {string} [options.mark]       'logo' | 'crest'
+ * @param {string} [options.mark]       'logo' | 'crest' | 'profile'
  * @param {string} [options.format]     'svg' | 'png' | 'webp' | 'jpeg'
  * @param {number} [options.pixelWidth] Output width for raster formats.
  * @param {number} [options.quality]    0–1, for WebP and JPEG.

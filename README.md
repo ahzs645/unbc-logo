@@ -1,7 +1,8 @@
 # UNBC Logo Generator
 
-The UNBC wordmark lockup and Alumni crest as reusable code: brand-correct department-line
-wrapping, white/black/green colour variants, and export to SVG, PNG, WebP, and JPEG.
+The UNBC wordmark lockup, social-media profile pictures, and the Alumni crest as reusable code:
+brand-correct department-line wrapping, white/black/green colour variants, and export to SVG,
+PNG, WebP, and JPEG.
 
 Extracted from [UNBCDoor](https://github.com/ahzs645/UNBCDoor), which consumes it as a git
 submodule so the door-sign generator and any future project draw the same lockup from one source.
@@ -76,6 +77,7 @@ const svg = renderLogoSvg({
 | `pixelWidth` | – | Sets `width`/`height`; height follows the aspect ratio. |
 | `fontCss` | – | CSS injected into `<defs>`, for embedding `@font-face`. |
 | `maxWidth` | `122` | Wrap width override, in viewBox units. |
+| `square` | `false` | Centres the lockup on a square canvas (the short side grows). |
 
 `renderCrestSvg({ variant })` does the same for the Alumni crest, where `variant` is `'full'` for
 the original gold/green/black artwork or a colour to flatten it to one ink.
@@ -104,6 +106,33 @@ import { UnbcLogoMark, AlumniCrest } from '@unbc/logo'
 
 Both components default to the artwork's native appearance (white wordmark, full-colour crest),
 so adding colour support did not change how existing callers render.
+
+### Social-media profile pictures
+
+`renderProfileSvg()` draws the square avatar used on UNBC social accounts: the UNBC letters on a
+green panel over the top two thirds, with the department or group name centred in a white band
+underneath. The layout is measured from the existing account avatars.
+
+```js
+import { exportLogo, renderProfileSvg } from '@unbc/logo'
+
+const svg = renderProfileSvg({ departmentText: 'Faculty of Environment' })
+
+// In the browser: a 1080×1080 PNG with the brand font embedded.
+await exportLogo({ mark: 'profile', departmentText: 'Student Life', format: 'png', pixelWidth: 1080 })
+```
+
+| Option | Default | Meaning |
+| --- | --- | --- |
+| `departmentText` | `''` | Caption. Wraps, and shrinks (down to 8 of 13 units) when it would not fit; `\n` forces a break. |
+| `background` | `'gradient'` | The green radial glow, or any colour for a flat panel. |
+| `markColor` | white | Colour of the UNBC letters. |
+| `bandColor` | white | Colour of the caption band. |
+| `textColor` | deep green | Caption colour. |
+| `pixelWidth` | – | Sets `width` and `height` (the image is square). |
+
+Most platforms crop avatars to a circle. `findCircleCropOverflow(text)` returns the caption lines
+that crop would clip, and the site previews the circle crop and warns about them.
 
 ---
 
@@ -203,6 +232,10 @@ adding a department updates both the drill-down selector and the preset list.
 `fonts/` holds the Helvetica Neue faces the lockup is built from, and `src/fonts.css` declares the
 family. The wordmark itself is outlined paths and needs no font — only the department line renders
 as text, at weight 800.
+
+`HelveticaNeueBold.ttf` shipped without a `cmap` table, which browsers reject outright. Its
+character map was rebuilt from the standard glyph names in its `post` table; the outlines and
+metrics are untouched.
 
 > These are **licensed commercial fonts**, redistributed here on the same basis as the UNBCDoor
 > repository they came from. Check your licence before relying on them in a new context.
