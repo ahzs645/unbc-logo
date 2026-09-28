@@ -1,9 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {
-  CAPTION_FONT_WEIGHT,
   PROFILE_LAYOUT,
-  measureCaptionText,
   UNBC_LETTERS,
   findCircleCropOverflow,
   layoutProfileCaption,
@@ -66,11 +64,4 @@ test('names a profile file after its department', () => {
     buildFileName({ mark: 'profile', departmentText: 'Student Life', format: 'png' }),
     'unbc-profile-student-life.png'
   )
-})
-
-test('sets the caption in Bold, measured with Bold metrics', () => {
-  assert.equal(CAPTION_FONT_WEIGHT, 700)
-  assert.ok(renderProfileSvg({ departmentText: 'Student Life' }).includes('font-weight="700"'))
-  // "Student Life" is 5760 units wide in Helvetica Neue Bold's 1000-unit em.
-  assert.equal(measureCaptionText('Student Life', 10), 57.6)
 })

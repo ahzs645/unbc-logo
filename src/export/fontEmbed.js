@@ -4,17 +4,14 @@
 // the host page's @font-face rules. Without this the department line silently falls back to a
 // system sans and the export stops matching the on-screen preview.
 //
-// Only the face a mark actually draws is embedded. The lockup's department line renders at weight
-// 800, which CSS font matching resolves to the Black (900) face; the profile picture's caption is
-// Bold (700). Both files are Latin subsets of ~20KB, so an export does not carry a whole font.
+// Only the Black (900) face is embedded: the wordmark itself is outlined paths, so the department
+// line is the sole *text* in the lockup and it renders at weight 800, which CSS font matching
+// resolves to the 900 face. Embedding the other faces would trade ~300KB per export for nothing.
 
 // `new URL(..., import.meta.url)` is standard ESM that Vite also statically rewrites at build
-// time, so this resolves both in a bundled app and in a plain module script. The specifiers must
-// stay literals for that rewriting to happen — don't refactor them into variables.
-const FACES = {
-  black: { url: new URL('../../fonts/HelveticaNeueBlack.ttf', import.meta.url).href, weight: 900 },
-  bold: { url: new URL('../../fonts/HelveticaNeueBoldLatin.ttf', import.meta.url).href, weight: 700 }
-}
+// time, so this resolves both in a bundled app and in a plain module script. The specifier must
+// stay a literal for that rewriting to happen — don't refactor it into a variable.
+const BLACK_FACE_URL = new URL('../../fonts/HelveticaNeueBlack.ttf', import.meta.url).href
 
 export const BRAND_FONT_FAMILY = 'HelveticaNeueUNBC'
 
@@ -29,35 +26,31 @@ const toBase64 = (buffer) => {
   return btoa(binary)
 }
 
-const cache = {}
+let cachedCss = null
 
 /**
- * Returns an @font-face rule with a brand face inlined as base64, ready to drop into an SVG
- * <style>. `face` is 'black' (the lockup's department line) or 'bold' (the profile caption).
- * Cached per face after the first call — exports are usually run several times in a row.
+ * Returns an @font-face rule with the brand face inlined as base64, ready to drop into an SVG
+ * <style>. Cached after the first call — exports are usually run several times in a row.
  *
  * Resolves to an empty string if the font can't be fetched, so an export still succeeds (with a
  * fallback face) rather than failing outright.
  */
-export const getEmbeddedFontCss = async (face = 'black') => {
-  if (cache[face] !== undefined) return cache[face]
-
-  const spec = FACES[face]
-  if (!spec) throw new Error(`Unknown font face: ${face}`)
+export const getEmbeddedFontCss = async () => {
+  if (cachedCss !== null) return cachedCss
 
   try {
-    const response = await fetch(spec.url)
+    const response = await fetch(BLACK_FACE_URL)
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
 
     const base64 = toBase64(await response.arrayBuffer())
-    cache[face] =
+    cachedCss =
       `@font-face{font-family:'${BRAND_FONT_FAMILY}';` +
       `src:url(data:font/truetype;base64,${base64}) format('truetype');` +
-      `font-weight:${spec.weight};font-style:normal;}`
+      `font-weight:900;font-style:normal;}`
   } catch (error) {
     console.error('Could not embed the brand font; export will use a fallback face.', error)
-    cache[face] = ''
+    cachedCss = ''
   }
 
-  return cache[face]
+  return cachedCss
 }

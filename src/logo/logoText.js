@@ -37,7 +37,7 @@ export const measureDepartmentText = (text) => {
   return advance * DEPARTMENT_LINE.fontSize / 1000
 }
 
-const wrapParagraph = (paragraph, maxWidth, measure) => {
+const wrapDepartmentParagraph = (paragraph, maxWidth) => {
   const words = paragraph.trim().split(/\s+/).filter(Boolean)
   if (words.length === 0) return []
 
@@ -47,7 +47,7 @@ const wrapParagraph = (paragraph, maxWidth, measure) => {
   words.forEach((word) => {
     const candidate = currentLine ? `${currentLine} ${word}` : word
 
-    if (!currentLine || measure(candidate) <= maxWidth) {
+    if (!currentLine || measureDepartmentText(candidate) <= maxWidth) {
       currentLine = candidate
       return
     }
@@ -60,19 +60,12 @@ const wrapParagraph = (paragraph, maxWidth, measure) => {
   return lines
 }
 
-/**
- * Greedy word wrap with any width function. Explicit newlines are kept as forced breaks, and a
- * single word wider than `maxWidth` is left on its own line rather than split.
- */
-export const wrapText = (text, maxWidth, measure) => {
-  if (!text) return []
+export const splitDepartmentText = (departmentText, maxWidth = DEPARTMENT_LINE.maxWidth) => {
+  if (!departmentText) return []
 
   // Preserve intentional line breaks while applying automatic wrapping within each line.
-  return text
+  return departmentText
     .toString()
     .split(/\r?\n/)
-    .flatMap((paragraph) => wrapParagraph(paragraph, maxWidth, measure))
+    .flatMap((paragraph) => wrapDepartmentParagraph(paragraph, maxWidth))
 }
-
-export const splitDepartmentText = (departmentText, maxWidth = DEPARTMENT_LINE.maxWidth) =>
-  wrapText(departmentText, maxWidth, measureDepartmentText)

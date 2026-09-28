@@ -66,9 +66,7 @@ const RENDERERS = { logo: renderLogoSvg, crest: renderCrestSvg, profile: renderP
 export const buildSvgSource = async ({ mark = 'logo', ...options } = {}) => {
   const render = RENDERERS[mark]
   if (!render) throw new Error(`Unknown mark: ${mark}`)
-  const fontCss = mark === 'crest'
-    ? undefined
-    : await getEmbeddedFontCss(mark === 'profile' ? 'bold' : 'black')
+  const fontCss = mark === 'crest' ? undefined : await getEmbeddedFontCss()
   return render({ ...options, fontCss })
 }
 

@@ -1,16 +1,8 @@
 /* Standalone generator site. Scoped entirely to the site — nothing here ships with the package. */
 
-/* The wordmark is outlined paths; the only text is the lockup's department line (weight 800,
-   which resolves to the Black face) and the profile picture's caption (Bold). Both load small
-   Latin subsets — the full Roman/Bold/Italic files would add ~1.2MB for glyphs never drawn. */
-@font-face {
-    font-family: 'HelveticaNeueUNBC';
-    src: url('../../fonts/HelveticaNeueBoldLatin.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
+/* The wordmark is outlined paths; the department line is the lockup's only text and renders at
+   weight 800, which resolves to this face. Loading the Roman/Bold/Italic faces here too would
+   add ~1.2MB to the site for glyphs it never draws. */
 @font-face {
     font-family: 'HelveticaNeueUNBC';
     src: url('../../fonts/HelveticaNeueBlack.ttf') format('truetype');
