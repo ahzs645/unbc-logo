@@ -40,6 +40,7 @@ const BACKGROUND_CHOICES = [
 
 export const LogoGenerator = ({ departmentText, setDepartmentText }) => {
   const [padding, setPadding] = useState(8)
+  const [square, setSquare] = useState(false)
   const [format, setFormat] = useState('svg')
   const [pixelWidth, setPixelWidth] = useState(1024)
   const [status, setStatus] = useStatus()
@@ -63,9 +64,10 @@ export const LogoGenerator = ({ departmentText, setDepartmentText }) => {
     // 'match' means "follow the logo colour" — pass nothing and let the renderer default.
     departmentColor: departmentColor.choice === 'match' ? undefined : departmentColor.value,
     background: background.value,
-    padding
+    padding,
+    square
   }), [departmentText, logoColor.value, departmentColor.choice, departmentColor.value,
-    background.value, padding])
+    background.value, padding, square])
 
   const previewSvg = useMemo(() => renderLogoSvg(svgOptions), [svgOptions])
 
@@ -121,6 +123,22 @@ export const LogoGenerator = ({ departmentText, setDepartmentText }) => {
         <ColorField label="Background" choices={BACKGROUND_CHOICES} control={background} />
 
         <div className="field">
+          <span className="field__label">Canvas</span>
+          <div className="chips">
+            {[{ value: false, label: 'Fit to lockup' }, { value: true, label: 'Square' }].map((option) => (
+              <button
+                key={option.label}
+                type="button"
+                className={`chip${square === option.value ? ' chip--on' : ''}`}
+                onClick={() => setSquare(option.value)}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="field">
           <label className="field__label" htmlFor="padding">
             Padding <span className="count">{padding}</span>
           </label>
@@ -140,6 +158,8 @@ export const LogoGenerator = ({ departmentText, setDepartmentText }) => {
           pixelWidth={pixelWidth}
           setPixelWidth={setPixelWidth}
           sizes={SIZE_PRESETS}
+          sizeLabel={square ? 'Size' : 'Width'}
+          formatSize={(size) => (square ? `${size}×${size}` : `${size}px`)}
         />
 
         <ExportActions

@@ -50,7 +50,7 @@ const CROPS = [
 export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
   const [format, setFormat] = useState('png')
   const [pixelWidth, setPixelWidth] = useState(800)
-  const [crop, setCrop] = useState('circle')
+  const [crop, setCrop] = useState('square')
   const [status, setStatus] = useStatus()
 
   const panel = useColorChoice('gradient')

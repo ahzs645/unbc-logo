@@ -49,11 +49,12 @@ const slugify = (value) => (value == null ? '' : String(value))
   .replace(/^-+|-+$/g, '')
   .slice(0, 60)
 
-export const buildFileName = ({ departmentText, color, variant, mark = 'logo', format }) => {
+export const buildFileName = ({ departmentText, color, variant, mark = 'logo', square, format }) => {
   // The crest is coloured by `variant`, the wordmark by `color`; a profile picture has no single
   // tone worth naming.
   const tone = mark === 'crest' ? (variant || 'full') : mark === 'profile' ? '' : (color || 'white')
-  const parts = ['unbc', mark, slugify(departmentText), slugify(tone)].filter(Boolean)
+  const parts = ['unbc', mark, slugify(departmentText), slugify(tone), square && 'square']
+    .filter(Boolean)
   return `${parts.join('-')}.${EXPORT_FORMATS[format]?.extension || format}`
 }
 

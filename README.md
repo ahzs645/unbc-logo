@@ -77,6 +77,7 @@ const svg = renderLogoSvg({
 | `pixelWidth` | – | Sets `width`/`height`; height follows the aspect ratio. |
 | `fontCss` | – | CSS injected into `<defs>`, for embedding `@font-face`. |
 | `maxWidth` | `122` | Wrap width override, in viewBox units. |
+| `square` | `false` | Centres the lockup on a square canvas (the short side grows). |
 
 `renderCrestSvg({ variant })` does the same for the Alumni crest, where `variant` is `'full'` for
 the original gold/green/black artwork or a colour to flatten it to one ink.
@@ -231,6 +232,10 @@ adding a department updates both the drill-down selector and the preset list.
 `fonts/` holds the Helvetica Neue faces the lockup is built from, and `src/fonts.css` declares the
 family. The wordmark itself is outlined paths and needs no font — only the department line renders
 as text, at weight 800.
+
+`HelveticaNeueBold.ttf` shipped without a `cmap` table, which browsers reject outright. Its
+character map was rebuilt from the standard glyph names in its `post` table; the outlines and
+metrics are untouched.
 
 > These are **licensed commercial fonts**, redistributed here on the same basis as the UNBCDoor
 > repository they came from. Check your licence before relying on them in a new context.

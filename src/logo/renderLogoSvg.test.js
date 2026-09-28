@@ -74,3 +74,14 @@ test('embedded font CSS lands in defs so a standalone file is self-contained', (
   const svg = renderLogoSvg({ departmentText: 'Physics', fontCss: '@font-face{font-family:X;}' })
   assert.ok(svg.includes('<defs><style>@font-face{font-family:X;}</style></defs>'))
 })
+
+test('centres the lockup on a square canvas when asked', () => {
+  const [x, y, width, height] = viewBoxOf(renderLogoSvg({ square: true, padding: 8 }))
+  assert.equal(width, height)
+  // The lockup is wider than tall, so only the vertical margin grows.
+  assert.equal(x, -8)
+  assert.ok(y < -8)
+
+  const svg = renderLogoSvg({ square: true, pixelWidth: 1024 })
+  assert.ok(svg.includes('width="1024" height="1024"'))
+})

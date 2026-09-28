@@ -78,10 +78,14 @@ export const renderLogoMarkup = (options = {}) => {
     departmentTextMarkup(lines, departmentFill, fontFamily)
 }
 
-// Wraps a fragment in a standalone <svg> document.
-const wrapSvg = ({ inner, width, height, padding, background, pixelWidth, fontCss, title }) => {
-  const viewWidth = width + padding * 2
-  const viewHeight = height + padding * 2
+// Wraps a fragment in a standalone <svg> document. `square` grows the shorter side so the artwork
+// sits centred on a square canvas, for avatars and other square-only slots.
+const wrapSvg = ({ inner, width, height, padding, background, pixelWidth, fontCss, title, square }) => {
+  const side = Math.max(width, height)
+  const padX = padding + (square ? (side - width) / 2 : 0)
+  const padY = padding + (square ? (side - height) / 2 : 0)
+  const viewWidth = width + padX * 2
+  const viewHeight = height + padY * 2
 
   // A pixel width is optional; when given, the height follows the aspect ratio so callers never
   // have to compute it (and never accidentally distort the mark).
@@ -90,10 +94,10 @@ const wrapSvg = ({ inner, width, height, padding, background, pixelWidth, fontCs
     : ''
 
   const backgroundRect = background && background !== 'none'
-    ? `<rect x="${-padding}" y="${-padding}" width="${viewWidth}" height="${viewHeight}" fill="${background}"/>`
+    ? `<rect x="${-padX}" y="${-padY}" width="${viewWidth}" height="${viewHeight}" fill="${background}"/>`
     : ''
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${-padding} ${-padding} ${viewWidth} ${viewHeight}"${dimensions}>` +
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${-padX} ${-padY} ${viewWidth} ${viewHeight}"${dimensions}>` +
     (title ? `<title>${escapeXml(title)}</title>` : '') +
     (fontCss ? `<defs><style>${fontCss}</style></defs>` : '') +
     backgroundRect +
@@ -114,6 +118,7 @@ const wrapSvg = ({ inner, width, height, padding, background, pixelWidth, fontCs
  * @param {number} [options.pixelWidth]       Sets width/height attributes at this pixel width.
  * @param {string} [options.fontCss]          CSS injected into <defs>, for embedding @font-face.
  * @param {number} [options.maxWidth]         Wrap width override, in viewBox units.
+ * @param {boolean} [options.square]          Centre the lockup on a square canvas.
  * @returns {string} A complete <svg> document.
  */
 export const renderLogoSvg = (options = {}) => {
@@ -127,7 +132,8 @@ export const renderLogoSvg = (options = {}) => {
     background: resolveColor(options.background, 'none'),
     pixelWidth: options.pixelWidth,
     fontCss: options.fontCss,
-    title: options.title ?? 'University of Northern British Columbia'
+    title: options.title ?? 'University of Northern British Columbia',
+    square: options.square
   })
 }
 
