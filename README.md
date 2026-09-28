@@ -1,8 +1,8 @@
 # UNBC Logo Generator
 
 The UNBC wordmark lockup, social-media profile pictures, and the Alumni crest as reusable code:
-brand-correct department-line
-wrapping, white/black/green colour variants, and export to SVG, PNG, WebP, and JPEG.
+brand-correct department-line wrapping, white/black/green colour variants, and export to SVG,
+PNG, WebP, and JPEG.
 
 Extracted from [UNBCDoor](https://github.com/ahzs645/UNBCDoor), which consumes it as a git
 submodule so the door-sign generator and any future project draw the same lockup from one source.
