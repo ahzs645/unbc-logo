@@ -7,7 +7,7 @@
 
 import { UNBC_LOGO } from '../assets/markup.js'
 import { recolorMark, resolveColor } from '../logo/logoColors.js'
-import { DEPARTMENT_LINE, measureDepartmentText, splitDepartmentText } from '../logo/logoText.js'
+import { wrapText } from '../logo/logoText.js'
 import { LOGO_FONT_FAMILY, escapeXml } from '../logo/renderLogoSvg.js'
 
 export const PROFILE_COLORS = {
@@ -39,9 +39,30 @@ export const PROFILE_LAYOUT = {
   }
 }
 
-// HelveticaNeue Black's cap height and descent, as fractions of the em.
-const CAP_HEIGHT = 0.7
-const DESCENT = 0.17
+// The caption is set in Helvetica Neue Bold, matching the reference avatars. Advance widths for
+// ASCII 32–126 from fonts/HelveticaNeueBold.ttf in its 1000-unit em; the face has no kerning, so
+// these are exact. Keeping them here makes wrapping identical in the preview, export, and Node.
+export const CAPTION_FONT_WEIGHT = 700
+const ASCII_START = 32
+const BOLD_ADVANCES = [
+  278, 278, 463, 556, 556, 1000, 685, 278, 296, 296, 407, 600, 278, 407, 278, 371,
+  556, 556, 556, 556, 556, 556, 556, 556, 556, 556, 278, 278, 600, 600, 600, 556,
+  800, 685, 704, 741, 741, 648, 593, 759, 741, 295, 556, 722, 593, 907, 741, 778,
+  667, 778, 722, 649, 611, 741, 630, 944, 667, 667, 648, 333, 371, 333, 600, 500,
+  259, 574, 611, 574, 611, 574, 333, 611, 593, 258, 278, 574, 258, 906, 593, 611,
+  611, 611, 389, 537, 352, 593, 520, 814, 537, 519, 519, 333, 223, 333, 600
+]
+const FALLBACK_ADVANCE = 600
+const CAP_HEIGHT = 0.714
+const DESCENT = 0.217
+
+/** Width of a caption line, in the 150-unit profile space, at the given font size. */
+export const measureCaptionText = (text, fontSize = PROFILE_LAYOUT.caption.fontSize) =>
+  Array.from(String(text)).reduce((total, character) => {
+    const index = character.codePointAt(0) - ASCII_START
+    return total + (BOLD_ADVANCES[index] || FALLBACK_ADVANCE)
+  }, 0) * fontSize / 1000
+
 const FONT_STEP = 0.25
 
 // The four "UNBC" letters are the first four shapes in the lockup artwork; everything after them
@@ -68,9 +89,7 @@ export const layoutProfileCaption = (text, layout = PROFILE_LAYOUT) => {
   const floor = size - caption.bottomMargin
 
   const fit = (fontSize) => {
-    // splitDepartmentText measures at the lockup's font size; rescale the wrap width to match.
-    const scale = DEPARTMENT_LINE.fontSize / fontSize
-    const lines = splitDepartmentText(text, caption.maxWidth * scale)
+    const lines = wrapText(text, caption.maxWidth, (line) => measureCaptionText(line, fontSize))
     const lineHeight = caption.lineHeight * fontSize / caption.fontSize
     const baseline = caption.capTop + fontSize * CAP_HEIGHT
     const bottom = baseline + (lines.length - 1) * lineHeight + fontSize * DESCENT
@@ -104,7 +123,7 @@ export const findCircleCropOverflow = (text, layout = PROFILE_LAYOUT) => {
     )
     if (lowest >= radius) return true
     const halfChord = Math.sqrt(radius ** 2 - lowest ** 2)
-    const halfWidth = measureDepartmentText(line) * fontSize / DEPARTMENT_LINE.fontSize / 2
+    const halfWidth = measureCaptionText(line, fontSize) / 2
     return halfWidth > halfChord
   })
 }
@@ -162,7 +181,7 @@ export const renderProfileSvg = ({
   const captionMarkup = lines.map((line, index) => (
     `<text x="${size / 2}" y="${round(baseline + index * lineHeight)}" text-anchor="middle"` +
     ` font-family="${escapeXml(fontFamily)}" font-size="${fontSize}"` +
-    ` font-weight="${DEPARTMENT_LINE.fontWeight}" fill="${fill}">${escapeXml(line)}</text>`
+    ` font-weight="${CAPTION_FONT_WEIGHT}" fill="${fill}">${escapeXml(line)}</text>`
   )).join('')
 
   const dimensions = pixelWidth ? ` width="${pixelWidth}" height="${pixelWidth}"` : ''

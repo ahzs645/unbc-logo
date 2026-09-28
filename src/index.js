@@ -25,6 +25,7 @@ export {
 export {
   renderProfileSvg,
   layoutProfileCaption,
+  measureCaptionText,
   findCircleCropOverflow,
   PROFILE_COLORS,
   PROFILE_LAYOUT

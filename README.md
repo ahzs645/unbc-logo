@@ -111,7 +111,8 @@ so adding colour support did not change how existing callers render.
 
 `renderProfileSvg()` draws the square avatar used on UNBC social accounts: the UNBC letters on a
 green panel over the top two thirds, with the department or group name centred in a white band
-underneath. The layout is measured from the existing account avatars.
+underneath, set in Helvetica Neue Bold. The layout is measured from the existing account
+avatars.
 
 ```js
 import { exportLogo, renderProfileSvg } from '@unbc/logo'
@@ -231,7 +232,10 @@ adding a department updates both the drill-down selector and the preset list.
 
 `fonts/` holds the Helvetica Neue faces the lockup is built from, and `src/fonts.css` declares the
 family. The wordmark itself is outlined paths and needs no font — only the department line renders
-as text, at weight 800.
+as text, at weight 800 (the Black face). The profile picture's caption is set in Bold (700).
+
+Exports embed only the face they draw, from small Latin subsets: `HelveticaNeueBlack.ttf` (24KB)
+and `HelveticaNeueBoldLatin.ttf` (19KB, rebuilt with `python3 scripts/subset-bold-font.py`).
 
 `HelveticaNeueBold.ttf` shipped without a `cmap` table, which browsers reject outright. Its
 character map was rebuilt from the standard glyph names in its `post` table; the outlines and
