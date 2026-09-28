@@ -1,6 +1,7 @@
 # UNBC Logo Generator
 
-The UNBC wordmark lockup and Alumni crest as reusable code: brand-correct department-line
+The UNBC wordmark lockup, social-media profile pictures, and the Alumni crest as reusable code:
+brand-correct department-line
 wrapping, white/black/green colour variants, and export to SVG, PNG, WebP, and JPEG.
 
 Extracted from [UNBCDoor](https://github.com/ahzs645/UNBCDoor), which consumes it as a git
@@ -104,6 +105,33 @@ import { UnbcLogoMark, AlumniCrest } from '@unbc/logo'
 
 Both components default to the artwork's native appearance (white wordmark, full-colour crest),
 so adding colour support did not change how existing callers render.
+
+### Social-media profile pictures
+
+`renderProfileSvg()` draws the square avatar used on UNBC social accounts: the UNBC letters on a
+green panel over the top two thirds, with the department or group name centred in a white band
+underneath. The layout is measured from the existing account avatars.
+
+```js
+import { exportLogo, renderProfileSvg } from '@unbc/logo'
+
+const svg = renderProfileSvg({ departmentText: 'Faculty of Environment' })
+
+// In the browser: a 1080×1080 PNG with the brand font embedded.
+await exportLogo({ mark: 'profile', departmentText: 'Student Life', format: 'png', pixelWidth: 1080 })
+```
+
+| Option | Default | Meaning |
+| --- | --- | --- |
+| `departmentText` | `''` | Caption. Wraps, and shrinks (down to 8 of 13 units) when it would not fit; `\n` forces a break. |
+| `background` | `'gradient'` | The green radial glow, or any colour for a flat panel. |
+| `markColor` | white | Colour of the UNBC letters. |
+| `bandColor` | white | Colour of the caption band. |
+| `textColor` | deep green | Caption colour. |
+| `pixelWidth` | – | Sets `width` and `height` (the image is square). |
+
+Most platforms crop avatars to a circle. `findCircleCropOverflow(text)` returns the caption lines
+that crop would clip, and the site previews the circle crop and warns about them.
 
 ---
 
