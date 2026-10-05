@@ -17,6 +17,14 @@ export const hasDepartmentSelection = (selection) => Boolean(
   selection.subSubDepartment
 )
 
+// The selection with every level cleared — a plain lockup with no department line.
+export const EMPTY_DEPARTMENT_SELECTION = Object.freeze({
+  departmentType: '',
+  mainDepartment: '',
+  subDepartment: '',
+  subSubDepartment: ''
+})
+
 export const toDepartmentSelection = (result) => ({
   departmentType: result.type,
   mainDepartment: result.main,

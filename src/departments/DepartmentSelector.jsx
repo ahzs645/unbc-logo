@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import {
+  EMPTY_DEPARTMENT_SELECTION,
   searchDepartmentHierarchy,
   toDepartmentSelection
 } from './hierarchy'
@@ -84,7 +85,10 @@ export const DepartmentSelector = ({ departments, value, onChange }) => {
         )}
       </div>
 
-      <DepartmentSelectionDisplay selection={value} />
+      <DepartmentSelectionDisplay
+        selection={value}
+        onClear={() => onChange({ ...EMPTY_DEPARTMENT_SELECTION })}
+      />
     </>
   )
 }

@@ -74,7 +74,8 @@ export {
   searchDepartmentHierarchy,
   getDepartmentDisplayName,
   hasDepartmentSelection,
-  toDepartmentSelection
+  toDepartmentSelection,
+  EMPTY_DEPARTMENT_SELECTION
 } from './departments/hierarchy.js'
 
 // ── React components ─────────────────────────────────────────────────────────────────────────

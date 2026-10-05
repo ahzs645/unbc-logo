@@ -1,7 +1,9 @@
 import React from 'react'
 import { hasDepartmentSelection } from './hierarchy'
 
-export const DepartmentSelectionDisplay = ({ selection }) => {
+// `onClear`, when given, adds a Clear button that drops the department so the lockup prints
+// on its own.
+export const DepartmentSelectionDisplay = ({ selection, onClear }) => {
   if (!hasDepartmentSelection(selection)) {
     return null
   }
@@ -12,9 +14,21 @@ export const DepartmentSelectionDisplay = ({ selection }) => {
         <div className="department-title">
           <strong>Selected Department</strong>
         </div>
-        {selection.departmentType && (
-          <span className="department-type-badge">{selection.departmentType}</span>
-        )}
+        <div className="department-actions">
+          {selection.departmentType && (
+            <span className="department-type-badge">{selection.departmentType}</span>
+          )}
+          {onClear && (
+            <button
+              type="button"
+              className="department-clear"
+              onClick={onClear}
+              aria-label="Clear department (plain logo)"
+            >
+              Clear
+            </button>
+          )}
+        </div>
       </div>
       <div className="department-path">
         {selection.mainDepartment && (

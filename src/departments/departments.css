@@ -94,6 +94,35 @@
     letter-spacing: 0.5px;
 }
 
+.department-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.department-clear {
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    background: transparent;
+    color: white;
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.department-clear:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.department-clear:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
 .department-type-badge {
     background: rgba(255, 255, 255, 0.25);
     color: white;
