@@ -8,14 +8,18 @@
         "Academic",
         "Advising"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Academic",
         "Advising"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Academic Success Centre": {
@@ -27,14 +31,18 @@
         "Academic Success",
         "Centre"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Academic",
         "Success Centre"
       ],
-      "fontSize": 13.75
+      "fontSize": 13.75,
+      "lineHeight": 15.74,
+      "baseline": 98.94
     }
   },
   "Access Resource Centre": {
@@ -46,7 +54,9 @@
         "Access Resource",
         "Centre"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -54,7 +64,9 @@
         "Resource",
         "Centre"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Administrative and Enterprise Systems": {
@@ -67,7 +79,9 @@
         "Administrative and",
         "Enterprise Systems"
       ],
-      "fontSize": 12.5
+      "fontSize": 12.5,
+      "lineHeight": 14.42,
+      "baseline": 117.75
     },
     "profileCircle": {
       "lines": [
@@ -75,7 +89,9 @@
         "and Enterprise",
         "Systems"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Alumni Relations": {
@@ -86,14 +102,18 @@
       "lines": [
         "Alumni Relations"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Alumni",
         "Relations"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Athletics": {
@@ -104,13 +124,17 @@
       "lines": [
         "Athletics"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Athletics"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Budgets and Reporting": {
@@ -122,14 +146,18 @@
         "Budgets and",
         "Reporting"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Budgets and",
         "Reporting"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Career Centre": {
@@ -140,14 +168,18 @@
       "lines": [
         "Career Centre"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Career",
         "Centre"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Centre for Teaching, Learning and Technology": {
@@ -161,7 +193,9 @@
         "Learning and",
         "Technology"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -169,7 +203,9 @@
         "Teaching, Learning",
         "and Technology"
       ],
-      "fontSize": 11.5
+      "fontSize": 11.5,
+      "lineHeight": 13.17,
+      "baseline": 92.86
     }
   },
   "Chemistry and Biochemistry": {
@@ -181,14 +217,18 @@
         "Chemistry and",
         "Biochemistry"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Chemistry and",
         "Biochemistry"
       ],
-      "fontSize": 15.25
+      "fontSize": 15.25,
+      "lineHeight": 17.46,
+      "baseline": 98.61
     }
   },
   "Chemstores": {
@@ -199,13 +239,17 @@
       "lines": [
         "Chemstores"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Chemstores"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Client Services": {
@@ -216,14 +260,18 @@
       "lines": [
         "Client Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Client",
         "Services"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Co-operative Education": {
@@ -235,14 +283,18 @@
         "Co-operative",
         "Education"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Co-operative",
         "Education"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Communications and Marketing": {
@@ -255,14 +307,18 @@
         "Communications",
         "and Marketing"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Communications",
         "and Marketing"
       ],
-      "fontSize": 15
+      "fontSize": 15,
+      "lineHeight": 17.17,
+      "baseline": 98.66
     }
   },
   "Computer Science": {
@@ -273,14 +329,18 @@
       "lines": [
         "Computer Science"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Computer",
         "Science"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Contracts and Supply Chain Management": {
@@ -293,7 +353,9 @@
         "Contracts and Supply",
         "Chain Management"
       ],
-      "fontSize": 11.25
+      "fontSize": 11.25,
+      "lineHeight": 12.98,
+      "baseline": 116.88
     },
     "profileCircle": {
       "lines": [
@@ -301,7 +363,9 @@
         "Supply Chain",
         "Management"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Counselling Centre": {
@@ -313,14 +377,18 @@
         "Counselling",
         "Centre"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Counselling",
         "Centre"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Department of Anthropology": {
@@ -332,14 +400,18 @@
         "Department of",
         "Anthropology"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Department of",
         "Anthropology"
       ],
-      "fontSize": 15.25
+      "fontSize": 15.25,
+      "lineHeight": 17.46,
+      "baseline": 98.61
     }
   },
   "Department of Ecosystem Science and Management": {
@@ -353,7 +425,9 @@
         "Ecosystem Science",
         "and Management"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -361,7 +435,9 @@
         "Ecosystem Science",
         "and Management"
       ],
-      "fontSize": 11.25
+      "fontSize": 11.25,
+      "lineHeight": 12.88,
+      "baseline": 93.06
     }
   },
   "Department of English": {
@@ -373,14 +449,18 @@
         "Department of",
         "English"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Department",
         "of English"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Department of First Nations Studies": {
@@ -393,7 +473,9 @@
         "Department of First",
         "Nations Studies"
       ],
-      "fontSize": 12.5
+      "fontSize": 12.5,
+      "lineHeight": 14.42,
+      "baseline": 117.75
     },
     "profileCircle": {
       "lines": [
@@ -401,7 +483,9 @@
         "First Nations",
         "Studies"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Department of Geography, Earth and Environmental Sciences": {
@@ -416,7 +500,9 @@
         "& Environmental",
         "Sciences"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -424,7 +510,9 @@
         "& Environmental",
         "Sciences"
       ],
-      "fontSize": 12.75
+      "fontSize": 12.75,
+      "lineHeight": 14.6,
+      "baseline": 91.86
     }
   },
   "Department of Global and International Studies": {
@@ -438,7 +526,9 @@
         "and International",
         "Studies"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -446,7 +536,9 @@
         "and International",
         "Studies"
       ],
-      "fontSize": 10.25
+      "fontSize": 10.25,
+      "lineHeight": 11.74,
+      "baseline": 93.85
     }
   },
   "Department of History": {
@@ -458,14 +550,18 @@
         "Department of",
         "History"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Department",
         "of History"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Department of Physics": {
@@ -477,14 +573,18 @@
         "Department of",
         "Physics"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Department",
         "of Physics"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Department of Political Science": {
@@ -497,7 +597,9 @@
         "Department of",
         "Political Science"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -505,7 +607,9 @@
         "Political",
         "Science"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Department of Psychology": {
@@ -517,14 +621,18 @@
         "Department of",
         "Psychology"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Department of",
         "Psychology"
       ],
-      "fontSize": 15.25
+      "fontSize": 15.25,
+      "lineHeight": 17.46,
+      "baseline": 98.61
     }
   },
   "Development": {
@@ -535,13 +643,17 @@
       "lines": [
         "Development"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Development"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Division of Medical Science": {
@@ -553,7 +665,9 @@
         "Division of",
         "Medical Science"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -561,7 +675,9 @@
         "Medical",
         "Science"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Division of Medical Sciences": {
@@ -574,7 +690,9 @@
         "Division of",
         "Medical Sciences"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -582,7 +700,9 @@
         "Medical",
         "Sciences"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Economics": {
@@ -593,13 +713,17 @@
       "lines": [
         "Economics"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Economics"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Educational Media Services": {
@@ -611,14 +735,18 @@
         "Educational Media",
         "Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Educational",
         "Media Services"
       ],
-      "fontSize": 14.25
+      "fontSize": 14.25,
+      "lineHeight": 16.32,
+      "baseline": 98.83
     }
   },
   "Facilities": {
@@ -629,13 +757,17 @@
       "lines": [
         "Facilities"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Facilities"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Faculty of Business and Economics": {
@@ -648,14 +780,18 @@
         "Business and",
         "Economics"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Business and",
         "Economics"
       ],
-      "fontSize": 16.5
+      "fontSize": 16.5,
+      "lineHeight": 18.89,
+      "baseline": 98.33
     }
   },
   "Faculty of Environment": {
@@ -666,13 +802,17 @@
       "lines": [
         "Environment"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Environment"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Faculty of Human and Health Sciences": {
@@ -685,7 +825,9 @@
         "Human and Health",
         "Sciences"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -693,7 +835,9 @@
         "Health",
         "Sciences"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Faculty of Indigenous Studies, Social Sciences and Humanities": {
@@ -708,7 +852,9 @@
         "Social Sciences and",
         "Humanities"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -716,7 +862,9 @@
         "Social Sciences",
         "and Humanities"
       ],
-      "fontSize": 11.25
+      "fontSize": 11.25,
+      "lineHeight": 12.88,
+      "baseline": 93.06
     }
   },
   "Faculty of Science and Engineering": {
@@ -729,7 +877,9 @@
         "Faculty of Science",
         "& Engineering"
       ],
-      "fontSize": 13
+      "fontSize": 12.5,
+      "lineHeight": 12,
+      "baseline": 116.65
     },
     "profileCircle": {
       "lines": [
@@ -737,7 +887,9 @@
         "Science",
         "& Engineering"
       ],
-      "fontSize": 13.75
+      "fontSize": 13.75,
+      "lineHeight": 15.74,
+      "baseline": 91.07
     }
   },
   "Financial Aid": {
@@ -748,13 +900,17 @@
       "lines": [
         "Financial Aid"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Financial Aid"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Financial Services": {
@@ -765,14 +921,18 @@
       "lines": [
         "Financial Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Financial",
         "Services"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Financial Services and Systems": {
@@ -785,7 +945,9 @@
         "Financial Services",
         "and Systems"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -793,7 +955,9 @@
         "Services and",
         "Systems"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "First Nations Centre": {
@@ -805,14 +969,18 @@
         "First Nations",
         "Centre"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "First Nations",
         "Centre"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Geoffrey R. Weller Library": {
@@ -824,14 +992,18 @@
         "Geoffrey R. Weller",
         "Library"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Geoffrey R.",
         "Weller Library"
       ],
-      "fontSize": 15.25
+      "fontSize": 15.25,
+      "lineHeight": 17.46,
+      "baseline": 98.61
     }
   },
   "Graduate Programs": {
@@ -843,14 +1015,18 @@
         "Graduate",
         "Programs"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Graduate",
         "Programs"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.6,
+      "lineHeight": 19.7,
+      "baseline": 102.52
     }
   },
   "Health and Wellness Centre": {
@@ -862,7 +1038,9 @@
         "Health and",
         "Wellness Centre"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -870,7 +1048,9 @@
         "Wellness",
         "Centre"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Health Research Institute": {
@@ -882,7 +1062,9 @@
         "Health Research",
         "Institute"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -890,7 +1072,9 @@
         "Research",
         "Institute"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Health Services": {
@@ -901,14 +1085,18 @@
       "lines": [
         "Health Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Health",
         "Services"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Hospitality Services": {
@@ -920,14 +1108,18 @@
         "Hospitality",
         "Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Hospitality",
         "Services"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Housing and Residence Life": {
@@ -939,14 +1131,18 @@
         "Housing and",
         "Residence Life"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Housing and",
         "Residence Life"
       ],
-      "fontSize": 14.5
+      "fontSize": 14.5,
+      "lineHeight": 16.6,
+      "baseline": 98.77
     }
   },
   "Human Resources": {
@@ -957,14 +1153,18 @@
       "lines": [
         "Human Resources"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Human",
         "Resources"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Information Technology Services": {
@@ -977,7 +1177,9 @@
         "Information",
         "Technology Services"
       ],
-      "fontSize": 11.75
+      "fontSize": 11.75,
+      "lineHeight": 13.56,
+      "baseline": 117.23
     },
     "profileCircle": {
       "lines": [
@@ -985,7 +1187,9 @@
         "Technology",
         "Services"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Infrastructure Services": {
@@ -997,14 +1201,18 @@
         "Infrastructure",
         "Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Infrastructure",
         "Services"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Institutional Research": {
@@ -1016,14 +1224,18 @@
         "Institutional",
         "Research"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Institutional",
         "Research"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Integrated Science": {
@@ -1034,14 +1246,18 @@
       "lines": [
         "Integrated Science"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Integrated",
         "Science"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Interdisciplinary Studies": {
@@ -1053,14 +1269,18 @@
         "Interdisciplinary",
         "Studies"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Interdisciplinary",
         "Studies"
       ],
-      "fontSize": 15.5
+      "fontSize": 15.5,
+      "lineHeight": 17.75,
+      "baseline": 98.55
     }
   },
   "International Exchanges and Student Programs": {
@@ -1074,7 +1294,9 @@
         "Exchanges and",
         "Student Programs"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -1082,7 +1304,9 @@
         "Exchanges and",
         "Student Programs"
       ],
-      "fontSize": 11.25
+      "fontSize": 11.25,
+      "lineHeight": 12.88,
+      "baseline": 93.06
     }
   },
   "Library": {
@@ -1093,13 +1317,17 @@
       "lines": [
         "Library"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Library"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Mathematics and Statistics": {
@@ -1111,14 +1339,18 @@
         "Mathematics and",
         "Statistics"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Mathematics",
         "and Statistics"
       ],
-      "fontSize": 15.5
+      "fontSize": 15.5,
+      "lineHeight": 17.75,
+      "baseline": 98.55
     }
   },
   "Northern Analytical Laboratory Services": {
@@ -1131,7 +1363,9 @@
         "Northern Analytical",
         "Laboratory Services"
       ],
-      "fontSize": 12.25
+      "fontSize": 12.25,
+      "lineHeight": 14.13,
+      "baseline": 117.58
     },
     "profileCircle": {
       "lines": [
@@ -1139,7 +1373,9 @@
         "Laboratory",
         "Services"
       ],
-      "fontSize": 11.5
+      "fontSize": 11.5,
+      "lineHeight": 13.17,
+      "baseline": 92.86
     }
   },
   "Northern BC Archives & Special Collections": {
@@ -1152,7 +1388,9 @@
         "Northern BC Archives",
         "& Special Collections"
       ],
-      "fontSize": 11.25
+      "fontSize": 11.25,
+      "lineHeight": 12.98,
+      "baseline": 116.88
     },
     "profileCircle": {
       "lines": [
@@ -1160,7 +1398,9 @@
         "Archives & Special",
         "Collections"
       ],
-      "fontSize": 11.75
+      "fontSize": 11.75,
+      "lineHeight": 13.45,
+      "baseline": 92.66
     }
   },
   "Northern BC Graduate Students' Society": {
@@ -1173,7 +1413,9 @@
         "Northern BC Graduate",
         "Students' Society"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -1181,7 +1423,9 @@
         "Graduate",
         "Students' Society"
       ],
-      "fontSize": 11.75
+      "fontSize": 11.75,
+      "lineHeight": 13.45,
+      "baseline": 92.66
     }
   },
   "Northern Medical Program": {
@@ -1193,7 +1437,9 @@
         "Northern Medical",
         "Program"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -1201,7 +1447,9 @@
         "Medical",
         "Program"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Northern Studies": {
@@ -1212,14 +1460,18 @@
       "lines": [
         "Northern Studies"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Northern",
         "Studies"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Northern Undergraduate Student Society": {
@@ -1233,7 +1485,9 @@
         "Undergraduate",
         "Student Society"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -1241,7 +1495,9 @@
         "Undergraduate",
         "Student Society"
       ],
-      "fontSize": 12.5
+      "fontSize": 12.5,
+      "lineHeight": 14.31,
+      "baseline": 92.06
     }
   },
   "Northwest": {
@@ -1252,13 +1508,17 @@
       "lines": [
         "Northwest"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Northwest"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Office of Graduate Programs": {
@@ -1271,7 +1531,9 @@
         "Office of Graduate",
         "Programs"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -1279,7 +1541,9 @@
         "Graduate",
         "Programs"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Office of Indigenous Initiatives": {
@@ -1292,7 +1556,9 @@
         "Office of Indigenous",
         "Initiatives"
       ],
-      "fontSize": 12
+      "fontSize": 12,
+      "lineHeight": 13.85,
+      "baseline": 117.4
     },
     "profileCircle": {
       "lines": [
@@ -1300,7 +1566,9 @@
         "Indigenous",
         "Initiatives"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Office of Research": {
@@ -1311,14 +1579,18 @@
       "lines": [
         "Office of Research"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Office of",
         "Research"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Office of Research and Innovation": {
@@ -1331,7 +1603,9 @@
         "Office of Research",
         "and Innovation"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -1339,7 +1613,9 @@
         "Research and",
         "Innovation"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Office of Student Recruitment": {
@@ -1352,7 +1628,9 @@
         "Office of Student",
         "Recruitment"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -1360,7 +1638,9 @@
         "Student",
         "Recruitment"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "Office of the Registrar": {
@@ -1372,14 +1652,18 @@
         "Office of the",
         "Registrar"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Office of the",
         "Registrar"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Parking Services": {
@@ -1390,14 +1674,18 @@
       "lines": [
         "Parking Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Parking",
         "Services"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Payroll Services": {
@@ -1408,14 +1696,18 @@
       "lines": [
         "Payroll Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Payroll",
         "Services"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Physics": {
@@ -1426,13 +1718,17 @@
       "lines": [
         "Physics"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Physics"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Research Accounting": {
@@ -1444,14 +1740,18 @@
         "Research",
         "Accounting"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Research",
         "Accounting"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Safety and Risk Management": {
@@ -1464,14 +1764,18 @@
         "Safety and Risk",
         "Management"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Safety and Risk",
         "Management"
       ],
-      "fontSize": 14.25
+      "fontSize": 14.25,
+      "lineHeight": 16.32,
+      "baseline": 98.83
     }
   },
   "School of Business": {
@@ -1483,14 +1787,18 @@
         "School of",
         "Business"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "School of",
         "Business"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "School of Education": {
@@ -1502,14 +1810,18 @@
         "School of",
         "Education"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "School of",
         "Education"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "School of Engineering": {
@@ -1521,14 +1833,18 @@
         "School of",
         "Engineering"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "School of",
         "Engineering"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "School of Health Sciences": {
@@ -1540,7 +1856,9 @@
         "School of Health",
         "Sciences"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -1548,7 +1866,9 @@
         "Health",
         "Sciences"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "School of Nursing": {
@@ -1559,14 +1879,18 @@
       "lines": [
         "School of Nursing"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "School of",
         "Nursing"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "School of Planning and Sustainability": {
@@ -1579,7 +1903,9 @@
         "School of Planning",
         "and Sustainability"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
@@ -1587,7 +1913,9 @@
         "Planning and",
         "Sustainability"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 90.87
     }
   },
   "School of Social Work": {
@@ -1599,14 +1927,18 @@
         "School of Social",
         "Work"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "School of",
         "Social Work"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Security": {
@@ -1617,13 +1949,17 @@
       "lines": [
         "Security"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Security"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 108.04
     }
   },
   "Service Desk": {
@@ -1634,14 +1970,18 @@
       "lines": [
         "Service Desk"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Service",
         "Desk"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Student Career Centre": {
@@ -1653,14 +1993,18 @@
         "Student Career",
         "Centre"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Student",
         "Career Centre"
       ],
-      "fontSize": 15
+      "fontSize": 15,
+      "lineHeight": 17.17,
+      "baseline": 98.66
     }
   },
   "Student Life & Orientation": {
@@ -1672,14 +2016,18 @@
         "Student Life",
         "& Orientation"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Student Life",
         "& Orientation"
       ],
-      "fontSize": 15.75
+      "fontSize": 15.75,
+      "lineHeight": 18.03,
+      "baseline": 98.5
     }
   },
   "Student Success": {
@@ -1690,14 +2038,18 @@
       "lines": [
         "Student Success"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Student",
         "Success"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "Treasury Services": {
@@ -1708,14 +2060,18 @@
       "lines": [
         "Treasury Services"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Treasury",
         "Services"
       ],
-      "fontSize": 17.25
+      "fontSize": 17.25,
+      "lineHeight": 19.75,
+      "baseline": 98.16
     }
   },
   "UBC Master of Occupational Therapy (MOT) - Northern and Rural Cohort": {
@@ -1730,7 +2086,9 @@
         "Therapy (MOT) - Northern",
         "and Rural Cohort"
       ],
-      "fontSize": 8.5
+      "fontSize": 8.5,
+      "lineHeight": 9.81,
+      "baseline": 114.95
     },
     "profileCircle": {
       "lines": [
@@ -1739,7 +2097,9 @@
         "(MOT) - Northern and",
         "Rural Cohort"
       ],
-      "fontSize": 10
+      "fontSize": 10,
+      "lineHeight": 11.45,
+      "baseline": 88.33
     }
   },
   "UBC Master of Physical Therapy - North": {
@@ -1753,7 +2113,9 @@
         "Physical Therapy -",
         "North"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -1761,7 +2123,9 @@
         "Physical Therapy",
         "- North"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 14.88,
+      "baseline": 91.67
     }
   },
   "UBC Northern Medical Program (NMP)": {
@@ -1774,7 +2138,9 @@
         "UBC Northern Medical",
         "Program (NMP)"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -1782,7 +2148,9 @@
         "Medical Program",
         "(NMP)"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 14.88,
+      "baseline": 91.67
     }
   },
   "UBC Postgraduate Medical Education - Residency Training": {
@@ -1797,7 +2165,9 @@
         "Medical Education -",
         "Residency Training"
       ],
-      "fontSize": 11
+      "fontSize": 11,
+      "lineHeight": 12.69,
+      "baseline": 116.7
     },
     "profileCircle": {
       "lines": [
@@ -1805,7 +2175,9 @@
         "Medical Education -",
         "Residency Training"
       ],
-      "fontSize": 10.75
+      "fontSize": 10.75,
+      "lineHeight": 12.31,
+      "baseline": 93.45
     }
   },
   "Women's and Gender Studies": {
@@ -1818,14 +2190,18 @@
         "Women's and",
         "Gender Studies"
       ],
-      "fontSize": 13
+      "fontSize": 13,
+      "lineHeight": 15,
+      "baseline": 118.1
     },
     "profileCircle": {
       "lines": [
         "Women's and",
         "Gender Studies"
       ],
-      "fontSize": 14
+      "fontSize": 14,
+      "lineHeight": 16.03,
+      "baseline": 98.89
     }
   }
 }

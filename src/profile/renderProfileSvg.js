@@ -7,6 +7,7 @@
 
 import { UNBC_LOGO } from '../assets/markup.js'
 import { departmentProfileNames } from '../departments/departmentData.js'
+import { findLockedProfile } from './lockedProfiles.js'
 import { recolorMark, resolveColor } from '../logo/logoColors.js'
 import { DEPARTMENT_LINE, measureDepartmentText, splitDepartmentText } from '../logo/logoText.js'
 import { LOGO_FONT_FAMILY, escapeXml } from '../logo/renderLogoSvg.js'
@@ -115,12 +116,27 @@ const PROFILE_LINE_OPENERS = ['&']
  * which every line fits — across the band and clear of the bottom edge on the square, inside the
  * circle on the circle layout.
  *
+ * A caption measured from one of UNBC's own avatars (lockedProfiles.js) is drawn exactly as
+ * measured instead; pass `{ locked: false }` for the defaults alone.
+ *
  * @returns {{ lines: string[], fontSize: number, lineHeight: number, baseline: number,
  *             shrunk: boolean }}
  */
-export const layoutProfileCaption = (text, layout = PROFILE_LAYOUT) => {
+export const layoutProfileCaption = (text, layout = PROFILE_LAYOUT, { locked: useLocks = true } = {}) => {
   const { caption } = layout
   const circle = layout.shape === 'circle'
+
+  // An avatar measured from UNBC's own artwork is drawn exactly as measured.
+  const locked = useLocks && findLockedProfile(text, layout.shape)
+  if (locked) {
+    return {
+      lines: [...locked.lines],
+      fontSize: locked.fontSize,
+      lineHeight: locked.lineHeight,
+      baseline: round(locked.capTop + locked.fontSize * CAP_HEIGHT),
+      shrunk: false
+    }
+  }
 
   const fit = (fontSize) => {
     // splitDepartmentText measures at the lockup's font size; rescale the wrap width to match.

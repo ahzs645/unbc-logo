@@ -44,6 +44,7 @@ export {
   LOCKUP_LINE_OPENERS
 } from './logo/logoText.js'
 export { LOCKED_LOCKUPS, findLockedLines } from './logo/lockedLockups.js'
+export { LOCKED_PROFILES, findLockedProfile } from './profile/lockedProfiles.js'
 
 // ── Colour variants ──────────────────────────────────────────────────────────────────────────
 export {

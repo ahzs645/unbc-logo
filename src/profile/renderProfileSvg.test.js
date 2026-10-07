@@ -7,8 +7,10 @@ import {
   findCircleCropOverflow,
   layoutProfileCaption,
   profileCaptionText,
+  profileLayout,
   renderProfileSvg
 } from './renderProfileSvg.js'
+import { LOCKED_PROFILES } from './lockedProfiles.js'
 import { buildFileName } from '../export/exportLogo.js'
 
 test('renders a square, standalone SVG document', () => {
@@ -107,15 +109,31 @@ test('the square layout breaks captions as UNBC\'s own avatars do', () => {
   assert.deepEqual(layoutProfileCaption('School of Engineering').lines, ['School of', 'Engineering'])
 })
 
-test('the circle layout matches the Graphics Standards Manual examples', () => {
+test('the circle layout breaks the Graphics Standards Manual examples as they do', () => {
   ;[['Wood Engineering', ['Wood', 'Engineering']], ['Graduate Programs', ['Graduate', 'Programs']]]
     .forEach(([name, lines]) => {
-      const layout = layoutProfileCaption(name, PROFILE_CIRCLE_LAYOUT)
+      // The defaults alone, without the locks.
+      const layout = layoutProfileCaption(name, PROFILE_CIRCLE_LAYOUT, { locked: false })
       assert.deepEqual(layout.lines, lines)
       assert.equal(layout.fontSize, PROFILE_CIRCLE_LAYOUT.caption.fontSize)
       // Both sit in the white half, below the band's top edge.
       assert.ok(layout.baseline - layout.fontSize * 0.7 > PROFILE_CIRCLE_LAYOUT.panelHeight)
     })
+})
+
+test('measured avatars are drawn exactly as measured', () => {
+  LOCKED_PROFILES.forEach((locked) => {
+    const layout = layoutProfileCaption(locked.text, profileLayout(locked.shape))
+    assert.deepEqual(layout.lines, locked.lines)
+    assert.equal(layout.fontSize, locked.fontSize)
+    assert.equal(layout.lineHeight, locked.lineHeight)
+    assert.ok(Math.abs(layout.baseline - locked.fontSize * 0.7 - locked.capTop) < 0.01)
+    // The lock holds the measured style; the defaults alone break the lines the same way.
+    assert.deepEqual(layoutProfileCaption(locked.text, profileLayout(locked.shape), { locked: false }).lines, locked.lines)
+  })
+  // A lock belongs to its shape, and a hand-made break skips it.
+  assert.equal(layoutProfileCaption('MBA', PROFILE_CIRCLE_LAYOUT).fontSize, PROFILE_CIRCLE_LAYOUT.caption.fontSize)
+  assert.deepEqual(layoutProfileCaption('Faculty of Science\n& Engineering').fontSize, PROFILE_LAYOUT.caption.fontSize)
 })
 
 test('the circle layout shrinks long captions until they fit inside the circle', () => {

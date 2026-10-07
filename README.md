@@ -148,6 +148,13 @@ Engineering's keeps "Faculty of" and sets "&": "Faculty of Science & Engineering
 `profileCaptionText(name)` applies all of that, and the site uses it, so one department line serves
 both the lockup and the avatar.
 
+UNBC's avatars don't share one caption style either — the Faculty of Science and Engineering's
+sets its lines smaller and tighter, and the manual's "MBA" sits larger and lower than its "Student
+Life". So an avatar that has been measured is **locked** in `src/profile/lockedProfiles.js`: drawn
+exactly as measured (lines, size, leading, position), with its source, while every other caption
+follows the layout's defaults. The wrap snapshot records each caption's size, leading and position
+as well as its lines, so a style change shows up there too.
+
 ---
 
 ## Colour variants
