@@ -6,6 +6,7 @@
 // size through the viewBox.
 
 import { UNBC_LOGO } from '../assets/markup.js'
+import { departmentProfileNames } from '../departments/departmentData.js'
 import { recolorMark, resolveColor } from '../logo/logoColors.js'
 import { DEPARTMENT_LINE, measureDepartmentText, splitDepartmentText } from '../logo/logoText.js'
 import { LOGO_FONT_FAMILY, escapeXml } from '../logo/renderLogoSvg.js'
@@ -72,11 +73,16 @@ export const PROFILE_LAYOUTS = { square: PROFILE_LAYOUT, circle: PROFILE_CIRCLE_
 export const profileLayout = (shape = 'square') => PROFILE_LAYOUTS[shape] || PROFILE_LAYOUT
 
 /**
- * The name an avatar prints for a department. Faculties drop "Faculty of", as UNBC's own faculty
- * avatars do ("Indigenous Studies, Social Sciences and Humanities"); every other name — "School of
- * Engineering" included — is printed as given.
+ * The name an avatar prints for a department. A unit whose avatar has been checked prints exactly
+ * what that avatar does (departmentProfileNames: the Faculty of Science and Engineering's reads
+ * "Faculty of Science & Engineering"). Otherwise faculties drop "Faculty of", as UNBC's own
+ * faculty avatars mostly do ("Indigenous Studies, Social Sciences and Humanities"), and every
+ * other name — "School of Engineering" included — is printed as given.
  */
-export const profileCaptionText = (name = '') => name.replace(/^(\s*)Faculty of\s+/i, '$1')
+export const profileCaptionText = (name = '') => {
+  const known = departmentProfileNames[name.replace(/\s+/g, ' ').trim()]
+  return known ?? name.replace(/^(\s*)Faculty of\s+/i, '$1')
+}
 
 // The caption is Helvetica Neue Black — the same face as the lockup's department line and UNBC's
 // web display type. Rendered large and downsampled to 150px, Black at 13 units matches the

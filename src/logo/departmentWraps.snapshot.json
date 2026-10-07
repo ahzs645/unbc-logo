@@ -727,17 +727,18 @@
     ],
     "profile": {
       "lines": [
-        "Science and",
-        "Engineering"
+        "Faculty of Science",
+        "& Engineering"
       ],
       "fontSize": 13
     },
     "profileCircle": {
       "lines": [
-        "Science and",
-        "Engineering"
+        "Faculty of",
+        "Science",
+        "& Engineering"
       ],
-      "fontSize": 17.25
+      "fontSize": 13.75
     }
   },
   "Financial Aid": {

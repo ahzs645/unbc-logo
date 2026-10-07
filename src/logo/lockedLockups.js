@@ -49,7 +49,7 @@ export const LOCKED_LOCKUPS = [
   {
     text: 'Northern Analytical Laboratory Services',
     lines: ['Northern Analytical', 'Laboratory Services'],
-    source: 'UNBCDoor production door-sign artboards (print archive)'
+    source: 'Official NALS sub-logo artwork supplied for this kit (Oct 2026); also the UNBCDoor production door-sign artboards'
   }
 ]
 

@@ -83,6 +83,15 @@ test('faculty avatars drop "Faculty of"; other names print as given', () => {
   assert.equal(profileCaptionText(''), '')
 })
 
+test('a faculty whose avatar has been checked prints what that avatar does', () => {
+  // UNBC's Faculty of Science and Engineering avatar keeps "Faculty of" and sets "&".
+  assert.equal(profileCaptionText('Faculty of Science and Engineering'), 'Faculty of Science & Engineering')
+  assert.deepEqual(
+    layoutProfileCaption(profileCaptionText('Faculty of Science and Engineering')).lines,
+    ['Faculty of Science', '& Engineering']
+  )
+})
+
 test('the square layout breaks captions as UNBC\'s own avatars do', () => {
   // The Faculty of Indigenous Studies, Social Sciences and Humanities and School of Engineering
   // avatars: "and" stays at the end of a caption line.

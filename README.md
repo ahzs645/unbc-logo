@@ -141,10 +141,12 @@ for a larger caption that shrinks until every line sits inside the circle.
 Most platforms crop avatars to a circle. `findCircleCropOverflow(text)` returns the caption lines
 that crop would clip from the square, and the site previews the crop and warns about them.
 
-Faculties drop "Faculty of" on avatars, as UNBC's own do ("Indigenous Studies, Social Sciences and
-Humanities"); other names, "School of Engineering" included, print as given.
-`profileCaptionText(name)` applies that, and the site uses it, so one department line serves both
-the lockup and the avatar.
+Faculties drop "Faculty of" on avatars, as most of UNBC's own do ("Indigenous Studies, Social
+Sciences and Humanities"); other names, "School of Engineering" included, print as given. A unit
+whose avatar reads otherwise is listed in `departmentProfileNames` — the Faculty of Science and
+Engineering's keeps "Faculty of" and sets "&": "Faculty of Science & Engineering".
+`profileCaptionText(name)` applies all of that, and the site uses it, so one department line serves
+both the lockup and the avatar.
 
 ---
 

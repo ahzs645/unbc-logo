@@ -138,3 +138,13 @@ export const departmentAlternateNames = {
     // The Career Centre's sub-logo drops "Student".
     "Student Career Centre": ["Career Centre"]
 }
+
+// The name a unit's social-media avatar prints, where UNBC's own avatar differs from the default.
+// By default an avatar prints the name as given, except that faculties drop "Faculty of"
+// (see profileCaptionText); these are the avatars that have been checked and say otherwise.
+export const departmentProfileNames = {
+    // Drops "Faculty of", as the default does; recorded because the avatar has been checked.
+    "Faculty of Indigenous Studies, Social Sciences and Humanities": "Indigenous Studies, Social Sciences and Humanities",
+    // Keeps "Faculty of", and sets "and" as "&".
+    "Faculty of Science and Engineering": "Faculty of Science & Engineering"
+}

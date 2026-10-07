@@ -65,9 +65,9 @@ export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
   const textColor = useColorChoice(PROFILE_COLORS.caption)
   const bandColor = useColorChoice('white', '#f3efe4')
 
-  // Faculties drop "Faculty of" on avatars, as UNBC's own faculty avatars do.
+  // The name the avatar prints: faculties mostly drop "Faculty of", as UNBC's own avatars do.
   const caption = profileCaptionText(departmentText)
-  const droppedFaculty = caption !== departmentText
+  const renamed = caption !== departmentText
 
   const svgOptions = useMemo(() => ({
     mark: 'profile',
@@ -105,7 +105,7 @@ export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
           <span>
             {layout.lines.length || 'No'} caption line{layout.lines.length === 1 ? '' : 's'}
             {layout.shrunk && ` · shrunk to fit${shape === 'circle' ? ' the circle' : ''}`}
-            {droppedFaculty && ' · “Faculty of” dropped'}
+            {renamed && ` · prints as “${caption}”`}
           </span>
           <code>{fileName}</code>
         </div>
@@ -123,7 +123,7 @@ export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
           id="profile-department"
           value={departmentText}
           onChange={setDepartmentText}
-          hint="Centred under the logo. Faculties drop “Faculty of”, as UNBC’s own avatars do. Long names wrap and shrink to fit; press Enter to force a line break."
+          hint="Centred under the logo. Faculties drop “Faculty of”, as most of UNBC’s own avatars do; a faculty whose avatar reads otherwise prints that. Long names wrap and shrink to fit; press Enter to force a line break."
         />
 
         <div className="field">
