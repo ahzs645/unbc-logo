@@ -28,20 +28,47 @@ test('draws only the four UNBC letters, not the lockup subtitle', () => {
   assert.ok(UNBC_LETTERS.startsWith('<polygon points="17.3 6.57'))
 })
 
-test('matches the reference layout for short names', () => {
-  assert.deepEqual(layoutProfileCaption('Faculty of Environment').lines, ['Faculty of', 'Environment'])
-  assert.deepEqual(layoutProfileCaption('Student Life').lines, ['Student Life'])
-  assert.equal(layoutProfileCaption('Student Life').fontSize, PROFILE_LAYOUT.caption.fontSize)
-  assert.equal(layoutProfileCaption('Student Life').shrunk, false)
+test('sets the square caption by its line count, as the department avatars do', () => {
+  // The defaults alone; these avatars are also locked at their measured values.
+  const [one, two, three] = PROFILE_LAYOUT.caption.styles
+  const capTop = (layout) => layout.baseline - layout.fontSize * 0.7
+
+  // One line, large and centred in the band (Sustainability, Northwest, Bookstore).
+  const northwest = layoutProfileCaption('Northwest', PROFILE_LAYOUT, { locked: false })
+  assert.deepEqual(northwest.lines, ['Northwest'])
+  assert.equal(northwest.fontSize, one.fontSize)
+  assert.ok(Math.abs(capTop(northwest) - 118.5) < 0.2)
+
+  // Two lines a size down (School of Engineering).
+  const engineering = layoutProfileCaption('School of Engineering', PROFILE_LAYOUT, { locked: false })
+  assert.deepEqual(engineering.lines, ['School of', 'Engineering'])
+  assert.equal(engineering.fontSize, two.fontSize)
+  assert.ok(Math.abs(capTop(engineering) - 108.8) < 0.2)
+
+  // Three lines smaller and tighter (Geography, Earth & Environmental Sciences).
+  const geography = layoutProfileCaption('Geography, Earth & Environmental Sciences', PROFILE_LAYOUT, { locked: false })
+  assert.deepEqual(geography.lines, ['Geography, Earth', '& Environmental', 'Sciences'])
+  assert.equal(geography.fontSize, three.fontSize)
+  assert.ok(Math.abs(capTop(geography) - 105.8) < 0.2)
+  assert.equal(geography.shrunk, false)
 })
 
-test('shrinks long names so the last line clears the bottom edge', () => {
-  const layout = layoutProfileCaption('Department of Computer Science and Mathematics')
+test('breaks captions evenly, the way UNBC\'s avatars do', () => {
+  assert.deepEqual(layoutProfileCaption('Conference & Event Services').lines, ['Conference &', 'Event Services'])
+  assert.deepEqual(
+    layoutProfileCaption('Indigenous Studies, Social Sciences and Humanities').lines,
+    ['Indigenous Studies,', 'Social Sciences and', 'Humanities']
+  )
+})
+
+test('shrinks names longer than three lines so they stay in the band', () => {
+  const layout = layoutProfileCaption('Department of Computer Science and Mathematics and Statistics and More')
   assert.ok(layout.shrunk)
   assert.ok(layout.fontSize >= PROFILE_LAYOUT.caption.minFontSize)
 
   const lastBaseline = layout.baseline + (layout.lines.length - 1) * layout.lineHeight
-  assert.ok(lastBaseline < PROFILE_LAYOUT.size)
+  assert.ok(lastBaseline + layout.fontSize * 0.17 <= PROFILE_LAYOUT.size - PROFILE_LAYOUT.caption.bottomMargin)
+  assert.ok(layout.baseline - layout.fontSize * 0.7 >= PROFILE_LAYOUT.panelHeight + PROFILE_LAYOUT.caption.topGap)
 })
 
 test('flags caption lines a circular crop would clip', () => {
@@ -133,7 +160,7 @@ test('measured avatars are drawn exactly as measured', () => {
   })
   // A lock belongs to its shape, and a hand-made break skips it.
   assert.equal(layoutProfileCaption('MBA', PROFILE_CIRCLE_LAYOUT).fontSize, PROFILE_CIRCLE_LAYOUT.caption.fontSize)
-  assert.deepEqual(layoutProfileCaption('Faculty of Science\n& Engineering').fontSize, PROFILE_LAYOUT.caption.fontSize)
+  assert.deepEqual(layoutProfileCaption('Faculty of Science\n& Engineering').fontSize, PROFILE_LAYOUT.caption.styles[1].fontSize)
 })
 
 test('the circle layout shrinks long captions until they fit inside the circle', () => {

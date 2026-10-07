@@ -9,7 +9,7 @@ import { UNBC_LOGO } from '../assets/markup.js'
 import { departmentProfileNames } from '../departments/departmentData.js'
 import { findLockedProfile } from './lockedProfiles.js'
 import { recolorMark, resolveColor } from '../logo/logoColors.js'
-import { DEPARTMENT_LINE, measureDepartmentText, splitDepartmentText } from '../logo/logoText.js'
+import { DEPARTMENT_LINE, measureDepartmentText, wrapDepartmentText } from '../logo/logoText.js'
 import { LOGO_FONT_FAMILY, escapeXml } from '../logo/renderLogoSvg.js'
 
 export const PROFILE_COLORS = {
@@ -22,8 +22,10 @@ export const PROFILE_COLORS = {
   mark: '#ffffff'
 }
 
-// Measured from the 150px reference avatars, and matching the square examples in the Graphics
-// Standards Manual (Feb 2020, p. 5: "Student Life", "MBA").
+// Measured from UNBC's own avatars (overlaid at 662px): the panel and letters from the reference
+// avatars and the Graphics Standards Manual (Feb 2020, p. 5), the caption from the department
+// avatars — Sustainability, Northwest, Bookstore and the manual's MBA (one line), School of
+// Engineering (two), and Geography, Earth & Environmental Sciences (three).
 export const PROFILE_LAYOUT = {
   shape: 'square',
   size: 150,
@@ -32,13 +34,21 @@ export const PROFILE_LAYOUT = {
   // The letters span 107 of the 150 units and are centred in the panel.
   markWidth: 107,
   caption: {
-    fontSize: 13,
-    // Cap tops sit 9 units into the band, whatever the line count.
-    capTop: 109,
-    lineHeight: 15,
+    // The avatars set the caption by how many lines it takes: one line large and centred in the
+    // band, two a size down, three smaller and tighter. `center` is where the block — first cap
+    // top to last baseline — sits; `leading` is the line spacing as a multiple of the size.
+    styles: [
+      // A single line shrinks no further than the smallest one-line avatar (the manual's 13.15
+      // "Student Life") before taking two lines instead.
+      { fontSize: 14.6, minFontSize: 13, leading: 1.2, center: 123.6 },
+      // Two lines likewise shrink a little before a third line is added.
+      { fontSize: 12.35, minFontSize: 11, leading: 1.2065, center: 120.6 },
+      { fontSize: 10.65, leading: 1.075, center: 121 }
+    ],
     maxWidth: 128,
-    // Long names shrink rather than spill past the bottom edge, down to this size.
+    // Longer names shrink in the three-line style, down to this size, to stay in the band.
     minFontSize: 8,
+    topGap: 4,
     bottomMargin: 6
   }
 }
@@ -107,14 +117,82 @@ export const UNBC_LETTERS = (UNBC_LOGO.inner.match(SHAPE) || []).slice(0, LETTER
 
 const round = (value) => Math.round(value * 100) / 100
 
-// Only "&" opens a caption line. No profile artwork shows an "and" carried down the way the
-// lockups do, and in the narrow centred band carrying it often costs a line and a smaller size.
-const PROFILE_LINE_OPENERS = ['&']
+const SIZE_STEP = 0.05
+
+// Square captions break evenly rather than filling each line in turn — the way UNBC's avatars
+// break ("Conference & / Event Services", "Geography, Earth / & Environmental / Sciences"). The
+// circle's lines run between curved edges, and its only references are two words, so it keeps
+// filling each line in turn, with "&" opening a line. wrapDepartmentText measures at the lockup's
+// font size, so the width is rescaled to match.
+const wrapCaption = (text, fontSize, maxWidth, shape = 'square', minLines = 1) =>
+  wrapDepartmentText(
+    text,
+    maxWidth * DEPARTMENT_LINE.fontSize / fontSize,
+    shape === 'circle' ? { lineOpeners: ['&'] } : { balance: true, minLines }
+  )
+
+const widest = (lines, fontSize) =>
+  Math.max(0, ...lines.map((line) => measureDepartmentText(line) * fontSize / DEPARTMENT_LINE.fontSize))
+
+// Places a block of lines so it is centred on `center`, measured from the first cap top to the
+// last baseline.
+const placeBlock = (lines, fontSize, lineHeight, center) => {
+  const capHeight = fontSize * CAP_HEIGHT
+  const capTop = center - ((lines.length - 1) * lineHeight + capHeight) / 2
+  const baseline = capTop + capHeight
+  return {
+    lines,
+    fontSize,
+    lineHeight: round(lineHeight),
+    baseline: round(baseline),
+    top: capTop,
+    bottom: baseline + (lines.length - 1) * lineHeight + fontSize * DESCENT
+  }
+}
+
+// The square tries each style in turn: one line, from its size down to its floor; then two lines,
+// likewise; then three or more, shrinking until the block clears the band's edges. The first that
+// fits wins, so a caption takes another line rather than squeeze far below its style's size.
+const layoutSquareCaption = (text, { size, panelHeight, caption }) => {
+  const { styles, maxWidth } = caption
+  const [one, two, three] = styles
+  if (!text.trim()) return { ...placeBlock([], one.fontSize, one.fontSize * one.leading, one.center), style: one }
+  const steps = (from, to) => {
+    const sizes = []
+    for (let step = 0; round(from - step * SIZE_STEP) >= to; step++) sizes.push(round(from - step * SIZE_STEP))
+    return sizes
+  }
+  const attempts = [
+    ...steps(one.fontSize, one.minFontSize).map((fontSize) => ({ fontSize, lines: 1 })),
+    ...steps(two.fontSize, two.minFontSize).map((fontSize) => ({ fontSize, lines: 2 })),
+    ...steps(three.fontSize, caption.minFontSize).map((fontSize) => ({ fontSize, lines: 3 })),
+    // Last resort, for a single word too long for the band: one line, shrinking past its floor.
+    ...steps(one.minFontSize, caption.minFontSize).map((fontSize) => ({ fontSize, lines: 1 }))
+  ]
+
+  let smallest = null
+  for (const attempt of attempts) {
+    const lines = wrapCaption(text, attempt.fontSize, maxWidth, 'square', attempt.lines)
+    // One and two lines must come out at exactly that count; three means three or more.
+    if (attempt.lines < 3 ? lines.length !== attempt.lines : lines.length < 3 && !/\n/.test(text)) continue
+    const style = styles[Math.min(lines.length, styles.length) - 1]
+    const placed = { ...placeBlock(lines, attempt.fontSize, attempt.fontSize * style.leading, style.center), style }
+    smallest = placed
+    const fitsBand = placed.top >= panelHeight + caption.topGap && placed.bottom <= size - caption.bottomMargin
+    if (fitsBand && widest(lines, attempt.fontSize) <= maxWidth) return placed
+  }
+
+  // Nothing fits (a single word too long for the band): the fewest lines at the smallest size.
+  if (smallest) return smallest
+  const lines = wrapCaption(text, caption.minFontSize, maxWidth)
+  const style = styles[Math.min(Math.max(lines.length, 1), styles.length) - 1]
+  return { ...placeBlock(lines, caption.minFontSize, caption.minFontSize * style.leading, style.center), style }
+}
 
 /**
- * Lays out the caption: wraps it at the largest size (up to the layout's reference size) at
- * which every line fits — across the band and clear of the bottom edge on the square, inside the
- * circle on the circle layout.
+ * Lays out the caption: breaks it evenly at the largest size its layout allows — on the square,
+ * the size for its line count, shrinking only to clear the band's edges; on the circle, the size
+ * at which every line sits inside the circle.
  *
  * A caption measured from one of UNBC's own avatars (lockedProfiles.js) is drawn exactly as
  * measured instead; pass `{ locked: false }` for the defaults alone.
@@ -138,31 +216,33 @@ export const layoutProfileCaption = (text, layout = PROFILE_LAYOUT, { locked: us
     }
   }
 
+  if (!circle) {
+    const placed = layoutSquareCaption(text, layout)
+    return {
+      lines: placed.lines,
+      fontSize: placed.fontSize,
+      lineHeight: placed.lineHeight,
+      baseline: placed.baseline,
+      shrunk: placed.fontSize < placed.style.fontSize
+    }
+  }
+
+  // The circle centres the block in the white half, and shrinks it until every line sits inside.
   const fit = (fontSize) => {
-    // splitDepartmentText measures at the lockup's font size; rescale the wrap width to match.
-    const scale = DEPARTMENT_LINE.fontSize / fontSize
-    const lines = splitDepartmentText(text, caption.maxWidth * scale, { lineOpeners: PROFILE_LINE_OPENERS })
+    const lines = wrapCaption(text, fontSize, caption.maxWidth, 'circle')
     const lineHeight = caption.lineHeight * fontSize / caption.fontSize
-    const capHeight = fontSize * CAP_HEIGHT
-    // The square hangs every caption from the same cap line; the circle centres the block.
-    const baseline = circle
-      ? caption.blockCenter - ((lines.length - 1) * lineHeight + capHeight) / 2 + capHeight
-      : caption.capTop + capHeight
-    const result = { lines, fontSize, lineHeight: round(lineHeight), baseline: round(baseline) }
-    return { ...result, fits: circle ? fitsCircle(result, layout) : fitsSquare(result, layout) }
+    const { top, bottom, ...placed } = placeBlock(lines, fontSize, lineHeight, caption.blockCenter)
+    return { ...placed, fits: fitsCircle(placed, layout) }
   }
 
   let result = fit(caption.fontSize)
   while (!result.fits && result.fontSize - FONT_STEP >= caption.minFontSize) {
-    result = fit(result.fontSize - FONT_STEP)
+    result = fit(round(result.fontSize - FONT_STEP))
   }
 
   const { fits, ...rest } = result
   return { ...rest, shrunk: result.fontSize < caption.fontSize }
 }
-
-const fitsSquare = ({ lines, fontSize, lineHeight, baseline }, { size, caption }) =>
-  baseline + (lines.length - 1) * lineHeight + fontSize * DESCENT <= size - caption.bottomMargin
 
 const fitsCircle = ({ lines, fontSize, lineHeight, baseline }, { size, panelHeight, caption }) => {
   const top = baseline - fontSize * CAP_HEIGHT

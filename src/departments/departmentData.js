@@ -103,7 +103,11 @@ export const departmentTypes = {
                     "Research Accounting": ["Research Accounting"],
                     "Treasury Services": ["Treasury"]
                 },
-                "Hospitality Services": ["Hospitality"],
+                // From unbc.ca's Operations page: Hospitality Services runs these two.
+                "Hospitality Services": {
+                    "Conference and Event Services": ["Conferences"],
+                    "Food Services": ["Food"]
+                },
                 "Human Resources": ["Human Resources"],
                 "Information Technology Services": {
                     "Administrative and Enterprise Systems": ["Enterprise Systems"],
@@ -148,5 +152,7 @@ export const departmentProfileNames = {
     // Keeps "Faculty of", and sets "and" as "&".
     "Faculty of Science and Engineering": "Faculty of Science & Engineering",
     // Drops "Department of", and sets "and" as "&".
-    "Department of Geography, Earth and Environmental Sciences": "Geography, Earth & Environmental Sciences"
+    "Department of Geography, Earth and Environmental Sciences": "Geography, Earth & Environmental Sciences",
+    // Sets "and" as "&".
+    "Conference and Event Services": "Conference & Event Services"
 }
