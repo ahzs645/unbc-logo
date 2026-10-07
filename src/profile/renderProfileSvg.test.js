@@ -90,6 +90,11 @@ test('a faculty whose avatar has been checked prints what that avatar does', () 
     layoutProfileCaption(profileCaptionText('Faculty of Science and Engineering')).lines,
     ['Faculty of Science', '& Engineering']
   )
+  // The Department of Geography, Earth and Environmental Sciences avatar.
+  assert.deepEqual(
+    layoutProfileCaption(profileCaptionText('Department of Geography, Earth and Environmental Sciences')).lines,
+    ['Geography, Earth', '& Environmental', 'Sciences']
+  )
 })
 
 test('the square layout breaks captions as UNBC\'s own avatars do', () => {

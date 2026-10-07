@@ -146,5 +146,7 @@ export const departmentProfileNames = {
     // Drops "Faculty of", as the default does; recorded because the avatar has been checked.
     "Faculty of Indigenous Studies, Social Sciences and Humanities": "Indigenous Studies, Social Sciences and Humanities",
     // Keeps "Faculty of", and sets "and" as "&".
-    "Faculty of Science and Engineering": "Faculty of Science & Engineering"
+    "Faculty of Science and Engineering": "Faculty of Science & Engineering",
+    // Drops "Department of", and sets "and" as "&".
+    "Department of Geography, Earth and Environmental Sciences": "Geography, Earth & Environmental Sciences"
 }

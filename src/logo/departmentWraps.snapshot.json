@@ -412,20 +412,19 @@
     ],
     "profile": {
       "lines": [
-        "Department of",
-        "Geography, Earth and",
-        "Environmental Sciences"
+        "Geography, Earth",
+        "& Environmental",
+        "Sciences"
       ],
-      "fontSize": 10
+      "fontSize": 11
     },
     "profileCircle": {
       "lines": [
-        "Department of",
-        "Geography, Earth and",
-        "Environmental",
+        "Geography, Earth",
+        "& Environmental",
         "Sciences"
       ],
-      "fontSize": 10
+      "fontSize": 12.75
     }
   },
   "Department of Global and International Studies": {
