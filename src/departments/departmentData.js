@@ -79,6 +79,7 @@ export const departmentTypes = {
                     "Research Accounting": ["Research Accounting"],
                     "Treasury Services": ["Treasury"]
                 },
+                "Hospitality Services": ["Hospitality"],
                 "Human Resources": ["Human Resources"],
                 "Information Technology Services": {
                     "Administrative and Enterprise Systems": ["Enterprise Systems"],

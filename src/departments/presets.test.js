@@ -80,6 +80,13 @@ test('the Library is offered by its full name first, then its short form', () =>
   assert.equal(archives.sub, 'Geoffrey R. Weller Library')
 })
 
+test('Hospitality Services sits with the other operations units', () => {
+  const [hospitality] = searchDepartmentPresets('hospitality')
+  assert.equal(hospitality.label, 'Hospitality Services')
+  assert.equal(hospitality.main, 'Vice-President, Finance and Administration')
+  assert.deepEqual(hospitality.lines, ['Hospitality Services'])
+})
+
 test('every alternate name belongs to a unit in the hierarchy', () => {
   const labels = new Set(expectedLabels())
   Object.keys(departmentAlternateNames).forEach((name) => assert.ok(labels.has(name), `${name} is not a unit`))
