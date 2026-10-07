@@ -5,12 +5,24 @@
 // can be searched, sorted, and rendered as a gallery. This derives that list rather than
 // maintaining a second copy, so adding a department in one place updates both.
 
-import { departmentTypes } from './departmentData.js'
+import { departmentAlternateNames, departmentTypes } from './departmentData.js'
 import { splitDepartmentText } from '../logo/logoText.js'
 
 // The leaf arrays in the hierarchy are short aliases (e.g. ["Psychology"]), not lockup names —
 // the lockup uses the full formal name of the level above.
 const isAliasList = (value) => Array.isArray(value)
+
+// A unit's shorter official names, each as its own preset straight after the full name. They keep
+// the unit's place in the hierarchy (`alternateOf` names the full form), so picking "Library" still
+// resolves to the Geoffrey R. Weller Library.
+const alternatesOf = (preset) => (departmentAlternateNames[preset.label] || []).map((name) => ({
+  ...preset,
+  id: `${preset.id}#${name}`,
+  label: name,
+  alternateOf: preset.label,
+  path: `${preset.path} (short form)`,
+  lines: splitDepartmentText(name)
+}))
 
 /**
  * Every department name that can appear on a lockup, in hierarchy order.
@@ -35,19 +47,23 @@ export const departmentPresets = Object.entries(departmentTypes).flatMap(([typeK
         path: `${typeData.name} › ${mainName} › ${subName}`,
         lines: splitDepartmentText(subName)
       }
+      const subPresets = [subPreset, ...alternatesOf(subPreset)]
 
-      if (isAliasList(subData) || !subData || typeof subData !== 'object') return [subPreset]
+      if (isAliasList(subData) || !subData || typeof subData !== 'object') return subPresets
 
-      const children = Object.keys(subData).map((subSubName) => ({
-        ...parent,
-        subSub: subSubName,
-        id: `${typeKey}/${mainName}/${subName}/${subSubName}`,
-        label: subSubName,
-        path: `${typeData.name} › ${mainName} › ${subName} › ${subSubName}`,
-        lines: splitDepartmentText(subSubName)
-      }))
+      const children = Object.keys(subData).flatMap((subSubName) => {
+        const preset = {
+          ...parent,
+          subSub: subSubName,
+          id: `${typeKey}/${mainName}/${subName}/${subSubName}`,
+          label: subSubName,
+          path: `${typeData.name} › ${mainName} › ${subName} › ${subSubName}`,
+          lines: splitDepartmentText(subSubName)
+        }
+        return [preset, ...alternatesOf(preset)]
+      })
 
-      return [subPreset, ...children]
+      return [...subPresets, ...children]
     })
   )
 )

@@ -26,17 +26,25 @@ export {
   renderProfileSvg,
   layoutProfileCaption,
   findCircleCropOverflow,
+  profileCaptionText,
+  profileLayout,
   PROFILE_COLORS,
-  PROFILE_LAYOUT
+  PROFILE_LAYOUT,
+  PROFILE_CIRCLE_LAYOUT,
+  PROFILE_LAYOUTS
 } from './profile/renderProfileSvg.js'
 
 // ── Text layout: the wrapping rules the lockup must obey ─────────────────────────────────────
 export {
   splitDepartmentText,
+  wrapDepartmentText,
   measureDepartmentText,
   DEPARTMENT_LINE,
-  LOGO_VIEWBOX
+  LOGO_VIEWBOX,
+  LOCKUP_LINE_OPENERS
 } from './logo/logoText.js'
+export { LOCKED_LOCKUPS, findLockedLines } from './logo/lockedLockups.js'
+export { LOCKED_PROFILES, findLockedProfile } from './profile/lockedProfiles.js'
 
 // ── Colour variants ──────────────────────────────────────────────────────────────────────────
 export {
@@ -64,7 +72,7 @@ export {
 export { getEmbeddedFontCss, BRAND_FONT_FAMILY } from './export/fontEmbed.js'
 
 // ── Departments ──────────────────────────────────────────────────────────────────────────────
-export { departmentTypes } from './departments/departmentData.js'
+export { departmentTypes, departmentAlternateNames, departmentProfileNames } from './departments/departmentData.js'
 export {
   departmentPresets,
   departmentPresetGroups,
@@ -77,6 +85,15 @@ export {
   toDepartmentSelection,
   EMPTY_DEPARTMENT_SELECTION
 } from './departments/hierarchy.js'
+export {
+  DEPARTMENT_LEVELS,
+  departmentChildren,
+  departmentAreaName,
+  findDepartmentPath,
+  resolveDepartmentPath,
+  selectDepartmentLevel,
+  fullDepartmentName
+} from './departments/departmentPath.js'
 
 // ── React components ─────────────────────────────────────────────────────────────────────────
 export { UnbcLogoMark } from './logo/UnbcLogoMark.jsx'

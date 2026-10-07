@@ -15,11 +15,11 @@ import {
   DepartmentField,
   ExportActions,
   FormatField,
-  PresetSearch,
   StatusNotice,
   useColorChoice,
   useStatus
 } from './controls.jsx'
+import { DepartmentPicker } from './DepartmentPicker.jsx'
 
 // This site builds the wordmark lockup only. The Alumni crest is a separate mark with its own
 // usage rules, so it is deliberately not offered here for free recolouring and download —
@@ -105,13 +105,13 @@ export const LogoGenerator = ({ departmentText, setDepartmentText }) => {
       </section>
 
       <section className="panel controls" aria-label="Lockup options">
+        <DepartmentPicker id="department-picker" value={departmentText} onChange={setDepartmentText} />
         <DepartmentField
           id="department"
           value={departmentText}
           onChange={setDepartmentText}
           hint={`Wraps automatically at ${DEPARTMENT_LINE.maxWidth} units. Press Enter to force a line break.`}
         />
-        <PresetSearch id="preset-search" onPick={setDepartmentText} />
 
         <ColorField label="Logo colour" choices={COLOR_CHOICES} control={logoColor} />
         <ColorField

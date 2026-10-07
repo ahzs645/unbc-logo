@@ -2,9 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import {
   EXPORT_FORMATS,
   EXPORT_FORMAT_ORDER,
-  departmentPresets,
-  isFormatSupported,
-  searchDepartmentPresets
+  isFormatSupported
 } from '../index.js'
 
 // Controls shared by the lockup and profile-picture generators.
@@ -84,50 +82,6 @@ export const DepartmentField = ({ id, value, onChange, hint }) => (
     <p className="hint">{hint}</p>
   </div>
 )
-
-export const PresetSearch = ({ id, onPick }) => {
-  const [search, setSearch] = useState('')
-  const results = useMemo(() => searchDepartmentPresets(search, 12), [search])
-
-  return (
-    <div className="field">
-      <label className="field__label" htmlFor={id}>
-        Department presets <span className="count">{departmentPresets.length}</span>
-      </label>
-      <input
-        id={id}
-        type="search"
-        className="input"
-        value={search}
-        placeholder="Search faculties, schools, departments…"
-        onChange={(event) => setSearch(event.target.value)}
-      />
-      {search.trim() && (
-        <ul className="results">
-          {results.length === 0 && <li className="results__empty">No match</li>}
-          {results.map((preset) => (
-            <li key={preset.id}>
-              <button
-                type="button"
-                className="result"
-                onClick={() => {
-                  onPick(preset.label)
-                  setSearch('')
-                }}
-              >
-                <span className="result__label">{preset.label}</span>
-                <span className="result__path">{preset.path}</span>
-                <span className="result__lines">
-                  {preset.lines.length} line{preset.lines.length === 1 ? '' : 's'}
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  )
-}
 
 export const FormatField = ({
   format,

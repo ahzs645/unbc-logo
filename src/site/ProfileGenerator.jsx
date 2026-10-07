@@ -7,6 +7,8 @@ import {
   exportLogo,
   findCircleCropOverflow,
   layoutProfileCaption,
+  profileCaptionText,
+  profileLayout,
   renderProfileSvg
 } from '../index.js'
 import {
@@ -14,11 +16,11 @@ import {
   DepartmentField,
   ExportActions,
   FormatField,
-  PresetSearch,
   StatusNotice,
   useColorChoice,
   useStatus
 } from './controls.jsx'
+import { DepartmentPicker } from './DepartmentPicker.jsx'
 
 const PANEL_CHOICES = [
   { value: 'gradient', label: 'Green glow', swatch: PROFILE_COLORS.glow },
@@ -42,15 +44,20 @@ const BAND_CHOICES = [
   { value: 'black', label: 'Black', swatch: BRAND_COLORS.black }
 ]
 
-const CROPS = [
+// The two setups in the Graphics Standards Manual (Feb 2020, p. 5): the square ("Student Life",
+// "MBA"), and the circle drawn for platforms that crop to one ("Wood Engineering", "Graduate
+// Programs") — smaller letters and a larger caption, all inside the circle.
+const SHAPES = [
   { value: 'square', label: 'Square' },
-  { value: 'circle', label: 'Circle crop' }
+  { value: 'circle', label: 'Circle' }
 ]
 
 export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
   const [format, setFormat] = useState('png')
   const [pixelWidth, setPixelWidth] = useState(800)
-  const [crop, setCrop] = useState('square')
+  const [shape, setShape] = useState('square')
+  // Shows how a platform's circular crop treats the square; the circle layout needs no preview.
+  const [cropPreview, setCropPreview] = useState(false)
   const [status, setStatus] = useStatus()
 
   const panel = useColorChoice('gradient')
@@ -58,18 +65,25 @@ export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
   const textColor = useColorChoice(PROFILE_COLORS.caption)
   const bandColor = useColorChoice('white', '#f3efe4')
 
+  // The name the avatar prints: faculties mostly drop "Faculty of", as UNBC's own avatars do.
+  const caption = profileCaptionText(departmentText)
+  const renamed = caption !== departmentText
+
   const svgOptions = useMemo(() => ({
     mark: 'profile',
-    departmentText,
+    shape,
+    departmentText: caption,
     background: panel.value,
     markColor: markColor.value,
     textColor: textColor.value,
     bandColor: bandColor.value
-  }), [departmentText, panel.value, markColor.value, textColor.value, bandColor.value])
+  }), [shape, caption, panel.value, markColor.value, textColor.value, bandColor.value])
 
   const previewSvg = useMemo(() => renderProfileSvg(svgOptions), [svgOptions])
-  const layout = useMemo(() => layoutProfileCaption(departmentText), [departmentText])
-  const clipped = useMemo(() => findCircleCropOverflow(departmentText), [departmentText])
+  const layout = useMemo(() => layoutProfileCaption(caption, profileLayout(shape)), [caption, shape])
+  const clipped = useMemo(() => findCircleCropOverflow(caption, profileLayout(shape)), [caption, shape])
+  // The circle layout is already round; rounding its frame too keeps the shadow off the corners.
+  const cropped = shape === 'circle' || cropPreview
 
   const fileName = buildFileName({ ...svgOptions, format })
 
@@ -78,11 +92,11 @@ export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
       <section className="panel" aria-label="Profile picture preview">
         <div className="stage stage--profile">
           <div
-            className={`avatar${crop === 'circle' ? ' avatar--circle' : ''}`}
+            className={`avatar${cropped ? ' avatar--circle' : ''}`}
             dangerouslySetInnerHTML={{ __html: previewSvg }}
           />
           <div
-            className={`avatar avatar--small${crop === 'circle' ? ' avatar--circle' : ''}`}
+            className={`avatar avatar--small${cropped ? ' avatar--circle' : ''}`}
             aria-hidden="true"
             dangerouslySetInnerHTML={{ __html: previewSvg }}
           />
@@ -90,42 +104,57 @@ export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
         <div className="stage-meta">
           <span>
             {layout.lines.length || 'No'} caption line{layout.lines.length === 1 ? '' : 's'}
-            {layout.shrunk && ` · shrunk to fit`}
+            {layout.shrunk && ` · shrunk to fit${shape === 'circle' ? ' the circle' : ''}`}
+            {renamed && ` · prints as “${caption}”`}
           </span>
           <code>{fileName}</code>
         </div>
         {clipped.length > 0 && (
           <p className="notice notice--warn">
-            Platforms that crop avatars to a circle will clip “{clipped[0]}”. Try a shorter
-            name, or break the lines differently.
+            Platforms that crop avatars to a circle will clip “{clipped[0]}”. Use the circle
+            shape, try a shorter name, or break the lines differently.
           </p>
         )}
       </section>
 
       <section className="panel controls" aria-label="Profile picture options">
+        <DepartmentPicker id="profile-department-picker" value={departmentText} onChange={setDepartmentText} />
         <DepartmentField
           id="profile-department"
           value={departmentText}
           onChange={setDepartmentText}
-          hint="Centred under the logo. Long names wrap and shrink to fit; press Enter to force a line break."
+          hint="Centred under the logo. Faculties drop “Faculty of”, as most of UNBC’s own avatars do; a faculty whose avatar reads otherwise prints that. Long names wrap and shrink to fit; press Enter to force a line break."
         />
-        <PresetSearch id="profile-preset-search" onPick={setDepartmentText} />
 
         <div className="field">
-          <span className="field__label">Preview</span>
+          <span className="field__label">Shape</span>
           <div className="chips">
-            {CROPS.map((option) => (
+            {SHAPES.map((option) => (
               <button
                 key={option.value}
                 type="button"
-                className={`chip${crop === option.value ? ' chip--on' : ''}`}
-                onClick={() => setCrop(option.value)}
+                className={`chip${shape === option.value ? ' chip--on' : ''}`}
+                onClick={() => setShape(option.value)}
               >
                 {option.label}
               </button>
             ))}
+            {shape === 'square' && (
+              <button
+                type="button"
+                className={`chip${cropPreview ? ' chip--on' : ''}`}
+                aria-pressed={cropPreview}
+                onClick={() => setCropPreview(!cropPreview)}
+              >
+                Preview circle crop
+              </button>
+            )}
           </div>
-          <p className="hint">Preview only — the download is always the full square.</p>
+          <p className="hint">
+            {shape === 'square'
+              ? 'The square from the Graphics Standards Manual. Platforms that crop to a circle cut its corners — preview that, or use the circle.'
+              : 'The circle from the Graphics Standards Manual: smaller letters, a larger caption, everything inside the circle. Transparent outside it.'}
+          </p>
         </div>
 
         <ColorField label="Panel" choices={PANEL_CHOICES} control={panel} />

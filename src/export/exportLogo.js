@@ -49,11 +49,12 @@ const slugify = (value) => (value == null ? '' : String(value))
   .replace(/^-+|-+$/g, '')
   .slice(0, 60)
 
-export const buildFileName = ({ departmentText, color, variant, mark = 'logo', square, format }) => {
+export const buildFileName = ({ departmentText, color, variant, mark = 'logo', square, shape, format }) => {
   // The crest is coloured by `variant`, the wordmark by `color`; a profile picture has no single
   // tone worth naming.
   const tone = mark === 'crest' ? (variant || 'full') : mark === 'profile' ? '' : (color || 'white')
-  const parts = ['unbc', mark, slugify(departmentText), slugify(tone), square && 'square']
+  const parts = ['unbc', mark, slugify(departmentText), slugify(tone), square && 'square',
+    mark === 'profile' && shape === 'circle' && 'circle']
     .filter(Boolean)
   return `${parts.join('-')}.${EXPORT_FORMATS[format]?.extension || format}`
 }
@@ -62,7 +63,7 @@ const RENDERERS = { logo: renderLogoSvg, crest: renderCrestSvg, profile: renderP
 
 // Builds the SVG source for any mark, with the brand font embedded so the result is
 // self-contained. `mark` is 'logo' (the wordmark lockup), 'crest' (the Alumni badge), or
-// 'profile' (the square social-media avatar).
+// 'profile' (the social-media avatar, square or circle).
 export const buildSvgSource = async ({ mark = 'logo', ...options } = {}) => {
   const render = RENDERERS[mark]
   if (!render) throw new Error(`Unknown mark: ${mark}`)

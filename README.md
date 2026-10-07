@@ -129,10 +129,37 @@ await exportLogo({ mark: 'profile', departmentText: 'Student Life', format: 'png
 | `markColor` | white | Colour of the UNBC letters. |
 | `bandColor` | white | Colour of the caption band. |
 | `textColor` | deep green | Caption colour. |
+| `shape` | `'square'` | `'square'`, or `'circle'` for the circle layout (transparent outside the circle). |
 | `pixelWidth` | – | Sets `width` and `height` (the image is square). |
 
+Both setups from the Graphics Standards Manual (Feb 2020, p. 5) are built in. The **square**
+("Student Life", "MBA") puts the letters on a green panel over the top two thirds. The **circle**
+("Wood Engineering", "Graduate Programs") is drawn for platforms that crop to one. It is a layout
+of its own, not the square cropped: the band starts halfway down, and smaller letters leave room
+for a larger caption that shrinks until every line sits inside the circle.
+
 Most platforms crop avatars to a circle. `findCircleCropOverflow(text)` returns the caption lines
-that crop would clip, and the site previews the circle crop and warns about them.
+that crop would clip from the square, and the site previews the crop and warns about them.
+
+Faculties drop "Faculty of" on avatars, as most of UNBC's own do ("Indigenous Studies, Social
+Sciences and Humanities"); other names, "School of Engineering" included, print as given. A unit
+whose avatar reads otherwise is listed in `departmentProfileNames` — the Faculty of Science and
+Engineering's keeps "Faculty of" and sets "&": "Faculty of Science & Engineering".
+`profileCaptionText(name)` applies all of that, and the site uses it, so one department line serves
+both the lockup and the avatar.
+
+The square sets its caption by how many lines it takes, as UNBC's department avatars do (measured
+from Sustainability, Northwest, Bookstore, School of Engineering and Geography, Earth &
+Environmental Sciences): one line large and centred in the band (14.6), two a size down (12.35),
+three smaller and tighter (10.65). Each style shrinks a little before the caption takes another
+line. Captions break **evenly** rather than filling each line in turn — "Conference & / Event
+Services", "Geography, Earth / & Environmental / Sciences" — the way the avatars do.
+
+Not every avatar follows those defaults: the Faculty of Science and Engineering's sets two lines
+smaller and tighter, and the manual's "Student Life" hangs high and small. So an avatar that has
+been measured is **locked** in `src/profile/lockedProfiles.js`: drawn exactly as measured (lines,
+size, leading, position), with its source, while every other caption follows the defaults. The wrap snapshot records each caption's size, leading and position
+as well as its lines, so a style change shows up there too.
 
 ---
 
@@ -174,6 +201,33 @@ this rather than silently clipping. Explicit `\n` breaks are preserved.
 The canvas grows to fit: one to three department lines sit inside the artwork's native 80-unit
 box, and beyond that `measureLockupHeight()` extends it so a tall lockup is never clipped.
 
+### Breaking before "and"
+
+UNBC's own sub-logos carry a conjunction down to start the next line rather than leaving it at the
+end of one — "Faculty of Human / and Health Sciences", "Northern BC Archives / & Special
+Collections" — and the lockup does the same. Profile-picture captions only carry "&": the official
+avatars leave "and" at the line end ("Social Sciences and / Humanities").
+
+### Locked lockups
+
+`src/logo/lockedLockups.js` lists every department line that has been matched to official UNBC
+sub-logo artwork, with where the artwork came from. The rules reproduce all of them (the tests
+check), and on the lockup they are also **locked**: those names always break exactly as listed, so
+a later rule change cannot move a line already matched to the real thing. When a new official
+sub-logo turns up, add it there.
+
+### The wrap snapshot
+
+`src/logo/departmentWraps.snapshot.json` records how every preset, every department printed on an
+archived door sign, and every locked name wraps — on the lockup and in a profile caption. `npm
+test` fails if any of them moves and names each one, so a rule change can only re-break lockups
+that are already in use on purpose:
+
+```bash
+npm test                 # lists every department line the change moved
+npm run snapshot:wraps   # accept the moves; commit the snapshot with the rule change
+```
+
 ---
 
 ## Export
@@ -210,7 +264,7 @@ support is not universal.
 
 ## Department presets
 
-The full UNBC hierarchy ships as data, flattened into 61 ready-to-use lockup presets:
+The full UNBC hierarchy ships as data, flattened into ready-to-use lockup presets (66 at present):
 
 ```js
 import { departmentPresets, searchDepartmentPresets } from '@unbc/logo'
@@ -223,7 +277,32 @@ Each preset carries its pre-wrapped `lines`, so a picker can show how tall a loc
 without re-measuring. Presets are *derived* from `departmentData.js` rather than duplicated, so
 adding a department updates both the drill-down selector and the preset list.
 
-`DepartmentSelector` (React) provides the searchable drill-down UI.
+Some units also have an official short form, listed in `departmentAlternateNames` — the
+Geoffrey R. Weller Library's sub-logo is also issued as just "Library". Each short form is a preset
+of its own, straight after the full name, and `fullDepartmentName('Library')` leads back to the
+unit.
+
+### Walking the hierarchy
+
+The generator site picks a department the way the door-sign generator does: a search, then the
+chosen path one level per row (area › portfolio › faculty or office › department or unit), each
+level a dropdown of its siblings. The helpers behind it are exported for any app that wants the
+same picker:
+
+```js
+import { DEPARTMENT_LEVELS, departmentChildren, findDepartmentPath, departmentTypes } from '@unbc/logo'
+
+findDepartmentPath(departmentTypes, 'Health Research Institute')
+// ['administrative', 'Vice-President, Research and Innovation', 'Health Research Institute']
+departmentChildren(departmentTypes, ['administrative', 'President'])
+// ['Athletics', 'Office of Indigenous Initiatives']
+```
+
+`resolveDepartmentPath()` turns a stored selection back into a path (or reports a name that isn't
+in the list), and `selectDepartmentLevel()` gives the selection after choosing a level — the levels
+above are kept and the ones below cleared.
+
+`DepartmentSelector` (React) is the older drill-down UI, kept for existing callers.
 
 ---
 
