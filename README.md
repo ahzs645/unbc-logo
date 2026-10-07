@@ -308,13 +308,27 @@ above are kept and the ones below cleared.
 
 ## Fonts
 
-`fonts/` holds the Helvetica Neue faces the lockup is built from, and `src/fonts.css` declares the
-family. The wordmark itself is outlined paths and needs no font — only the department line renders
-as text, at weight 800.
+The lockup's department line is set in **Helvetica Neue LT Pro** — 95 Black, the cut UNBC's own
+documents use — and `src/fonts.css` declares 55 Roman, 56 Italic, 75 Bold and 95 Black as the
+`HelveticaNeueUNBC` family. The wordmark itself is outlined paths and needs no font — only the
+department line renders as text, at weight 800.
 
-`HelveticaNeueBold.ttf` shipped without a `cmap` table, which browsers reject outright. Its
-character map was rebuilt from the standard glyph names in its `post` table; the outlines and
-metrics are untouched.
+- `fonts/source/` is the Helvetica Neue LT Pro package as supplied: every weight and width, 49
+  faces. Nothing loads these directly.
+- `fonts/HelveticaNeueLTPro-*.otf` are the four faces the kit uses, **generated** from the package
+  by `python3 scripts/build-fonts.py` (needs `pip install fonttools`) and committed. The package's
+  Roman, Italic and Bold have no kerning, so the build copies it in from the older faces (their
+  letters have exactly the same advance widths, and the kerning agrees wherever both releases
+  have a pair); Black has fi and fl glyphs but no ligature table, so the build adds one. The
+  UNBCDoor sign generator builds the same four faces the same way.
+- `fonts/HelveticaNeue{Roman.otf,Italic.ttf,Bold.otf,Black.otf}` are the older Helvetica Neue
+  faces. LT Pro has about 380 characters; these cover about 2,200 and stand in for the rest as
+  `HelveticaNeueUNBCFallback`, which `LOGO_FONT_FAMILY` names second. A browser only downloads one
+  if some text needs a character LT Pro lacks.
+
+Exports embed LT Pro Black alone (about 37KB). It has every character the trimmed older Black the
+exports used to embed had, and its letters have the same widths, so the department-line wrapping
+table in `src/logo/logoText.js` is unchanged.
 
 > These are **licensed commercial fonts**, redistributed here on the same basis as the UNBCDoor
 > repository they came from. Check your licence before relying on them in a new context.

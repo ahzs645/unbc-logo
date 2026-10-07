@@ -100,7 +100,8 @@ export const profileCaptionText = (name = '') => {
 // reference avatars' caption in width and ink weight; Bold is visibly too light at any size that
 // matches the width. (Measuring glyphs rendered *at* 150px misleads: hinting rounds advances.)
 //
-// HelveticaNeue Black's cap height and descent, as fractions of the em.
+// Helvetica Neue Black's cap height and descent, as fractions of the em (LT Pro Black's letters
+// stand within 2/1000 of an em of the older Black's).
 const CAP_HEIGHT = 0.7
 const DESCENT = 0.17
 const FONT_STEP = 0.25

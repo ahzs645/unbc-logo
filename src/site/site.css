@@ -1,11 +1,20 @@
 /* Standalone generator site. Scoped entirely to the site — nothing here ships with the package. */
 
 /* The wordmark is outlined paths; the department line is the lockup's only text and renders at
-   weight 800, which resolves to this face. Loading the Roman/Bold/Italic faces here too would
-   add ~1.2MB to the site for glyphs it never draws. */
+   weight 800, which resolves to these faces: Helvetica Neue LT Pro Black, and the older Black
+   for any character LT Pro lacks (only downloaded if a name needs one). The Roman/Bold/Italic
+   faces would add weight to the site for glyphs it never draws. */
 @font-face {
     font-family: 'HelveticaNeueUNBC';
-    src: url('../../fonts/HelveticaNeueBlack.ttf') format('truetype');
+    src: url('../../fonts/HelveticaNeueLTPro-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueUNBCFallback';
+    src: url('../../fonts/HelveticaNeueBlack.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
     font-display: swap;

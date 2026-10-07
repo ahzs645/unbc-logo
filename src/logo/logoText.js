@@ -16,7 +16,8 @@ export const DEPARTMENT_LINE = {
   maxWidth: 122
 }
 
-// Advance widths from the bundled HelveticaNeueBlack font, in its native 1000-unit em.
+// Advance widths from Helvetica Neue LT Pro Black (and the older Helvetica Neue Black, whose
+// widths are the same for every one of these characters), in its native 1000-unit em.
 // Keeping these metrics here makes wrapping deterministic in the preview, PNG, and PDF
 // exporters instead of depending on whether a browser canvas has finished loading the font.
 const ASCII_START = 32

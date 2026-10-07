@@ -10,7 +10,9 @@ import { ALUMNI_BADGE, UNBC_LOGO } from '../assets/markup.js'
 import { BRAND_COLORS, recolorCrest, recolorMark, resolveColor } from './logoColors.js'
 import { DEPARTMENT_LINE, LOGO_VIEWBOX, splitDepartmentText } from './logoText.js'
 
-export const LOGO_FONT_FAMILY = "'HelveticaNeueUNBC', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+// Helvetica Neue LT Pro, then the older Helvetica Neue faces for any character it lacks (see
+// src/fonts.css).
+export const LOGO_FONT_FAMILY = "'HelveticaNeueUNBC', 'HelveticaNeueUNBCFallback', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 
 export const CREST_VIEWBOX = ALUMNI_BADGE.viewBox
 

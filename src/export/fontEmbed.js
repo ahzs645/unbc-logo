@@ -4,14 +4,15 @@
 // the host page's @font-face rules. Without this the department line silently falls back to a
 // system sans and the export stops matching the on-screen preview.
 //
-// Only the Black (900) face is embedded: the wordmark itself is outlined paths, so the department
-// line is the sole *text* in the lockup and it renders at weight 800, which CSS font matching
-// resolves to the 900 face. Embedding the other faces would trade ~300KB per export for nothing.
+// Only the Black (900) face is embedded — Helvetica Neue LT Pro Black, about 37KB: the wordmark
+// itself is outlined paths, so the department line is the sole *text* in the lockup and it renders
+// at weight 800, which CSS font matching resolves to the 900 face. Embedding the other faces would
+// add weight to every export for nothing.
 
 // `new URL(..., import.meta.url)` is standard ESM that Vite also statically rewrites at build
 // time, so this resolves both in a bundled app and in a plain module script. The specifier must
 // stay a literal for that rewriting to happen — don't refactor it into a variable.
-const BLACK_FACE_URL = new URL('../../fonts/HelveticaNeueBlack.ttf', import.meta.url).href
+const BLACK_FACE_URL = new URL('../../fonts/HelveticaNeueLTPro-Black.otf', import.meta.url).href
 
 export const BRAND_FONT_FAMILY = 'HelveticaNeueUNBC'
 
@@ -45,7 +46,7 @@ export const getEmbeddedFontCss = async () => {
     const base64 = toBase64(await response.arrayBuffer())
     cachedCss =
       `@font-face{font-family:'${BRAND_FONT_FAMILY}';` +
-      `src:url(data:font/truetype;base64,${base64}) format('truetype');` +
+      `src:url(data:font/otf;base64,${base64}) format('opentype');` +
       `font-weight:900;font-style:normal;}`
   } catch (error) {
     console.error('Could not embed the brand font; export will use a fallback face.', error)
