@@ -87,6 +87,13 @@ test('Hospitality Services sits with the other operations units', () => {
   assert.deepEqual(hospitality.lines, ['Hospitality Services'])
 })
 
+test('the Health Research Institute sits with research, on one line', () => {
+  const [institute] = searchDepartmentPresets('health research')
+  assert.equal(institute.label, 'Health Research Institute')
+  assert.equal(institute.main, 'Vice-President, Research and Innovation')
+  assert.deepEqual(institute.lines, ['Health Research Institute'])
+})
+
 test('every alternate name belongs to a unit in the hierarchy', () => {
   const labels = new Set(expectedLabels())
   Object.keys(departmentAlternateNames).forEach((name) => assert.ok(labels.has(name), `${name} is not a unit`))

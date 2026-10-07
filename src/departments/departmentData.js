@@ -96,6 +96,7 @@ export const departmentTypes = {
             "Vice-President, Research and Innovation": {
                 "Alumni Relations": ["Alumni Relations"],
                 "Communications and Marketing": ["Communications"],
+                "Health Research Institute": ["HRI"],
                 "Office of Research and Innovation": {
                     "Northern Analytical Laboratory Services": ["NALS"]
                 },
