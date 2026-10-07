@@ -174,6 +174,33 @@ this rather than silently clipping. Explicit `\n` breaks are preserved.
 The canvas grows to fit: one to three department lines sit inside the artwork's native 80-unit
 box, and beyond that `measureLockupHeight()` extends it so a tall lockup is never clipped.
 
+### Breaking before "and"
+
+UNBC's own sub-logos carry a conjunction down to start the next line rather than leaving it at the
+end of one — "Faculty of Human / and Health Sciences", "Northern BC Archives / & Special
+Collections" — and the lockup does the same. Profile-picture captions only carry "&": the official
+avatars leave "and" at the line end ("Social Sciences and / Humanities").
+
+### Locked lockups
+
+`src/logo/lockedLockups.js` lists every department line that has been matched to official UNBC
+sub-logo artwork, with where the artwork came from. The rules reproduce all of them (the tests
+check), and on the lockup they are also **locked**: those names always break exactly as listed, so
+a later rule change cannot move a line already matched to the real thing. When a new official
+sub-logo turns up, add it there.
+
+### The wrap snapshot
+
+`src/logo/departmentWraps.snapshot.json` records how every preset, every department printed on an
+archived door sign, and every locked name wraps — on the lockup and in a profile caption. `npm
+test` fails if any of them moves and names each one, so a rule change can only re-break lockups
+that are already in use on purpose:
+
+```bash
+npm test                 # lists every department line the change moved
+npm run snapshot:wraps   # accept the moves; commit the snapshot with the rule change
+```
+
 ---
 
 ## Export

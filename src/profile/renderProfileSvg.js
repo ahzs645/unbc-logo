@@ -61,6 +61,10 @@ export const UNBC_LETTERS = (UNBC_LOGO.inner.match(SHAPE) || []).slice(0, LETTER
 
 const round = (value) => Math.round(value * 100) / 100
 
+// Only "&" opens a caption line. No profile artwork shows an "and" carried down the way the
+// lockups do, and in the narrow centred band carrying it often costs a line and a smaller size.
+const PROFILE_LINE_OPENERS = ['&']
+
 /**
  * Lays out the caption: wraps it at the largest size (up to the reference 13 units) at which
  * every line fits across the band and the last line clears the bottom edge.
@@ -75,7 +79,7 @@ export const layoutProfileCaption = (text, layout = PROFILE_LAYOUT) => {
   const fit = (fontSize) => {
     // splitDepartmentText measures at the lockup's font size; rescale the wrap width to match.
     const scale = DEPARTMENT_LINE.fontSize / fontSize
-    const lines = splitDepartmentText(text, caption.maxWidth * scale)
+    const lines = splitDepartmentText(text, caption.maxWidth * scale, { lineOpeners: PROFILE_LINE_OPENERS })
     const lineHeight = caption.lineHeight * fontSize / caption.fontSize
     const baseline = caption.capTop + fontSize * CAP_HEIGHT
     const bottom = baseline + (lines.length - 1) * lineHeight + fontSize * DESCENT

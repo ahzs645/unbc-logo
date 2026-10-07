@@ -1,3 +1,5 @@
+import { findLockedLines } from './lockedLockups.js'
+
 // Geometry of the UNBC logo lockup, in the logo's own 178×80 viewBox coordinates.
 // The department line sits where the original artwork's (empty) #svgDepartmentText element was:
 // inside logoAndTextGroup (translate 0,15) at translate(57.73, 36.56) → viewBox (57.73, 51.56),
@@ -37,7 +39,12 @@ export const measureDepartmentText = (text) => {
   return advance * DEPARTMENT_LINE.fontSize / 1000
 }
 
-const wrapDepartmentParagraph = (paragraph, maxWidth) => {
+// Words that open a line rather than close one. UNBC's own sub-logos carry a conjunction down to
+// the next line: "Faculty of Human / and Health Sciences", "Studies, Social Sciences / and
+// Humanities", "Northern BC Archives / & Special Collections".
+export const LOCKUP_LINE_OPENERS = ['and', '&']
+
+const wrapDepartmentParagraph = (paragraph, maxWidth, lineOpeners) => {
   const words = paragraph.trim().split(/\s+/).filter(Boolean)
   if (words.length === 0) return []
 
@@ -52,12 +59,14 @@ const wrapDepartmentParagraph = (paragraph, maxWidth) => {
       return
     }
 
-    // An ampersand opens the next line rather than closing this one, as on UNBC's own
-    // "Northern BC Archives / & Special Collections" sub-logo.
+    // A conjunction left at the end of the line moves down to open the next one — unless that
+    // would push the next line past the lockup, or leave nothing behind.
     const lastSpace = currentLine.lastIndexOf(' ')
-    if (lastSpace > 0 && currentLine.slice(lastSpace + 1) === '&') {
+    const lastWord = currentLine.slice(lastSpace + 1)
+    const carried = `${lastWord} ${word}`
+    if (lastSpace > 0 && lineOpeners.has(lastWord.toLowerCase()) && measureDepartmentText(carried) <= maxWidth) {
       lines.push(currentLine.slice(0, lastSpace))
-      currentLine = `& ${word}`
+      currentLine = carried
       return
     }
 
@@ -69,12 +78,41 @@ const wrapDepartmentParagraph = (paragraph, maxWidth) => {
   return lines
 }
 
-export const splitDepartmentText = (departmentText, maxWidth = DEPARTMENT_LINE.maxWidth) => {
+/**
+ * The department line broken by the wrapping rules alone, ignoring the locked lockups. Use
+ * splitDepartmentText() to draw a lockup; this is for checking the rules against the locks.
+ *
+ * @param {object} [options]
+ * @param {string[]} [options.lineOpeners] words carried down to open the next line rather than
+ *   left closing one (defaults to the lockup's conjunctions).
+ */
+export const wrapDepartmentText = (
+  departmentText,
+  maxWidth = DEPARTMENT_LINE.maxWidth,
+  { lineOpeners = LOCKUP_LINE_OPENERS } = {}
+) => {
   if (!departmentText) return []
+  const openers = new Set(lineOpeners.map((word) => word.toLowerCase()))
 
   // Preserve intentional line breaks while applying automatic wrapping within each line.
   return departmentText
     .toString()
     .split(/\r?\n/)
-    .flatMap((paragraph) => wrapDepartmentParagraph(paragraph, maxWidth))
+    .flatMap((paragraph) => wrapDepartmentParagraph(paragraph, maxWidth, openers))
+}
+
+/**
+ * The department line as the lockup draws it. A name matched to official sub-logo artwork
+ * (lockedLockups.js) breaks exactly as that artwork does; anything else follows the rules.
+ */
+export const splitDepartmentText = (departmentText, maxWidth = DEPARTMENT_LINE.maxWidth, options) => {
+  if (!departmentText) return []
+
+  const text = departmentText.toString()
+  if (maxWidth === DEPARTMENT_LINE.maxWidth && !/\r?\n/.test(text)) {
+    const locked = findLockedLines(text)
+    if (locked) return locked
+  }
+
+  return wrapDepartmentText(text, maxWidth, options)
 }

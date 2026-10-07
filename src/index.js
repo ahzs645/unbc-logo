@@ -33,10 +33,13 @@ export {
 // ── Text layout: the wrapping rules the lockup must obey ─────────────────────────────────────
 export {
   splitDepartmentText,
+  wrapDepartmentText,
   measureDepartmentText,
   DEPARTMENT_LINE,
-  LOGO_VIEWBOX
+  LOGO_VIEWBOX,
+  LOCKUP_LINE_OPENERS
 } from './logo/logoText.js'
+export { LOCKED_LOCKUPS, findLockedLines } from './logo/lockedLockups.js'
 
 // ── Colour variants ──────────────────────────────────────────────────────────────────────────
 export {
