@@ -2,7 +2,7 @@
   "name": "@ahzs645/unbc-logo",
   "private": true,
   "version": "0.1.0",
-  "description": "UNBC logo generator — brand lockup rendering, department-line wrapping, colour variants, and SVG/PNG/WebP/JPEG export.",
+  "description": "UNBC logo generator \u2014 brand lockup rendering, department-line wrapping, colour variants, and SVG/PNG/WebP/JPEG export.",
   "type": "module",
   "license": "UNLICENSED",
   "engines": {
@@ -28,7 +28,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "node --test",
-    "build:assets": "node scripts/build-assets.mjs"
+    "build:assets": "node scripts/build-assets.mjs",
+    "snapshot:wraps": "node scripts/snapshot-wraps.mjs"
   },
   "peerDependencies": {
     "react": ">=18",

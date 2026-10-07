@@ -1,0 +1,1150 @@
+{
+  "Academic Advising": {
+    "lockup": [
+      "Academic Advising"
+    ],
+    "profile": {
+      "lines": [
+        "Academic",
+        "Advising"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Academic Success Centre": {
+    "lockup": [
+      "Academic Success Centre"
+    ],
+    "profile": {
+      "lines": [
+        "Academic Success",
+        "Centre"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Access Resource Centre": {
+    "lockup": [
+      "Access Resource Centre"
+    ],
+    "profile": {
+      "lines": [
+        "Access Resource",
+        "Centre"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Administrative and Enterprise Systems": {
+    "lockup": [
+      "Administrative and",
+      "Enterprise Systems"
+    ],
+    "profile": {
+      "lines": [
+        "Administrative and",
+        "Enterprise Systems"
+      ],
+      "fontSize": 12.5
+    }
+  },
+  "Alumni Relations": {
+    "lockup": [
+      "Alumni Relations"
+    ],
+    "profile": {
+      "lines": [
+        "Alumni Relations"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Athletics": {
+    "lockup": [
+      "Athletics"
+    ],
+    "profile": {
+      "lines": [
+        "Athletics"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Budgets and Reporting": {
+    "lockup": [
+      "Budgets and Reporting"
+    ],
+    "profile": {
+      "lines": [
+        "Budgets and",
+        "Reporting"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Career Centre": {
+    "lockup": [
+      "Career Centre"
+    ],
+    "profile": {
+      "lines": [
+        "Career Centre"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Centre for Teaching, Learning and Technology": {
+    "lockup": [
+      "Centre for Teaching,",
+      "Learning and Technology"
+    ],
+    "profile": {
+      "lines": [
+        "Centre for Teaching,",
+        "Learning and",
+        "Technology"
+      ],
+      "fontSize": 11
+    }
+  },
+  "Chemistry and Biochemistry": {
+    "lockup": [
+      "Chemistry and Biochemistry"
+    ],
+    "profile": {
+      "lines": [
+        "Chemistry and",
+        "Biochemistry"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Chemstores": {
+    "lockup": [
+      "Chemstores"
+    ],
+    "profile": {
+      "lines": [
+        "Chemstores"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Client Services": {
+    "lockup": [
+      "Client Services"
+    ],
+    "profile": {
+      "lines": [
+        "Client Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Co-operative Education": {
+    "lockup": [
+      "Co-operative Education"
+    ],
+    "profile": {
+      "lines": [
+        "Co-operative",
+        "Education"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Communications and Marketing": {
+    "lockup": [
+      "Communications and",
+      "Marketing"
+    ],
+    "profile": {
+      "lines": [
+        "Communications",
+        "and Marketing"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Computer Science": {
+    "lockup": [
+      "Computer Science"
+    ],
+    "profile": {
+      "lines": [
+        "Computer Science"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Contracts and Supply Chain Management": {
+    "lockup": [
+      "Contracts and Supply Chain",
+      "Management"
+    ],
+    "profile": {
+      "lines": [
+        "Contracts and Supply",
+        "Chain Management"
+      ],
+      "fontSize": 11.25
+    }
+  },
+  "Counselling Centre": {
+    "lockup": [
+      "Counselling Centre"
+    ],
+    "profile": {
+      "lines": [
+        "Counselling",
+        "Centre"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Department of Anthropology": {
+    "lockup": [
+      "Department of Anthropology"
+    ],
+    "profile": {
+      "lines": [
+        "Department of",
+        "Anthropology"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Department of Ecosystem Science and Management": {
+    "lockup": [
+      "Department of Ecosystem",
+      "Science and Management"
+    ],
+    "profile": {
+      "lines": [
+        "Department of",
+        "Ecosystem Science",
+        "and Management"
+      ],
+      "fontSize": 11
+    }
+  },
+  "Department of English": {
+    "lockup": [
+      "Department of English"
+    ],
+    "profile": {
+      "lines": [
+        "Department of",
+        "English"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Department of First Nations Studies": {
+    "lockup": [
+      "Department of First Nations",
+      "Studies"
+    ],
+    "profile": {
+      "lines": [
+        "Department of First",
+        "Nations Studies"
+      ],
+      "fontSize": 12.5
+    }
+  },
+  "Department of Geography, Earth and Environmental Sciences": {
+    "lockup": [
+      "Department of Geography,",
+      "Earth and Environmental",
+      "Sciences"
+    ],
+    "profile": {
+      "lines": [
+        "Department of",
+        "Geography, Earth and",
+        "Environmental Sciences"
+      ],
+      "fontSize": 10
+    }
+  },
+  "Department of Global and International Studies": {
+    "lockup": [
+      "Department of Global and",
+      "International Studies"
+    ],
+    "profile": {
+      "lines": [
+        "Department of Global",
+        "and International",
+        "Studies"
+      ],
+      "fontSize": 11
+    }
+  },
+  "Department of History": {
+    "lockup": [
+      "Department of History"
+    ],
+    "profile": {
+      "lines": [
+        "Department of",
+        "History"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Department of Physics": {
+    "lockup": [
+      "Department of Physics"
+    ],
+    "profile": {
+      "lines": [
+        "Department of",
+        "Physics"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Department of Political Science": {
+    "lockup": [
+      "Department of Political",
+      "Science"
+    ],
+    "profile": {
+      "lines": [
+        "Department of",
+        "Political Science"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Department of Psychology": {
+    "lockup": [
+      "Department of Psychology"
+    ],
+    "profile": {
+      "lines": [
+        "Department of",
+        "Psychology"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Development": {
+    "lockup": [
+      "Development"
+    ],
+    "profile": {
+      "lines": [
+        "Development"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Division of Medical Science": {
+    "lockup": [
+      "Division of Medical Science"
+    ],
+    "profile": {
+      "lines": [
+        "Division of",
+        "Medical Science"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Division of Medical Sciences": {
+    "lockup": [
+      "Division of Medical",
+      "Sciences"
+    ],
+    "profile": {
+      "lines": [
+        "Division of",
+        "Medical Sciences"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Economics": {
+    "lockup": [
+      "Economics"
+    ],
+    "profile": {
+      "lines": [
+        "Economics"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Educational Media Services": {
+    "lockup": [
+      "Educational Media Services"
+    ],
+    "profile": {
+      "lines": [
+        "Educational Media",
+        "Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Facilities": {
+    "lockup": [
+      "Facilities"
+    ],
+    "profile": {
+      "lines": [
+        "Facilities"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Faculty of Business and Economics": {
+    "lockup": [
+      "Faculty of Business and",
+      "Economics"
+    ],
+    "profile": {
+      "lines": [
+        "Faculty of Business",
+        "and Economics"
+      ],
+      "fontSize": 12.5
+    }
+  },
+  "Faculty of Environment": {
+    "lockup": [
+      "Faculty of Environment"
+    ],
+    "profile": {
+      "lines": [
+        "Faculty of",
+        "Environment"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Faculty of Human and Health Sciences": {
+    "lockup": [
+      "Faculty of Human and",
+      "Health Sciences"
+    ],
+    "profile": {
+      "lines": [
+        "Faculty of Human",
+        "and Health Sciences"
+      ],
+      "fontSize": 12
+    }
+  },
+  "Faculty of Indigenous Studies, Social Sciences and Humanities": {
+    "lockup": [
+      "Faculty of Indigenous",
+      "Studies, Social Sciences",
+      "and Humanities"
+    ],
+    "profile": {
+      "lines": [
+        "Faculty of Indigenous",
+        "Studies, Social Sciences",
+        "and Humanities"
+      ],
+      "fontSize": 10
+    }
+  },
+  "Faculty of Science and Engineering": {
+    "lockup": [
+      "Faculty of Science and",
+      "Engineering"
+    ],
+    "profile": {
+      "lines": [
+        "Faculty of Science",
+        "and Engineering"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Financial Aid": {
+    "lockup": [
+      "Financial Aid"
+    ],
+    "profile": {
+      "lines": [
+        "Financial Aid"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Financial Services": {
+    "lockup": [
+      "Financial Services"
+    ],
+    "profile": {
+      "lines": [
+        "Financial Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Financial Services and Systems": {
+    "lockup": [
+      "Financial Services and",
+      "Systems"
+    ],
+    "profile": {
+      "lines": [
+        "Financial Services",
+        "and Systems"
+      ],
+      "fontSize": 13
+    }
+  },
+  "First Nations Centre": {
+    "lockup": [
+      "First Nations Centre"
+    ],
+    "profile": {
+      "lines": [
+        "First Nations",
+        "Centre"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Geoffrey R. Weller Library": {
+    "lockup": [
+      "Geoffrey R. Weller Library"
+    ],
+    "profile": {
+      "lines": [
+        "Geoffrey R. Weller",
+        "Library"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Graduate Programs": {
+    "lockup": [
+      "Graduate Programs"
+    ],
+    "profile": {
+      "lines": [
+        "Graduate",
+        "Programs"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Health and Wellness Centre": {
+    "lockup": [
+      "Health and Wellness Centre"
+    ],
+    "profile": {
+      "lines": [
+        "Health and",
+        "Wellness Centre"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Health Research Institute": {
+    "lockup": [
+      "Health Research Institute"
+    ],
+    "profile": {
+      "lines": [
+        "Health Research",
+        "Institute"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Health Services": {
+    "lockup": [
+      "Health Services"
+    ],
+    "profile": {
+      "lines": [
+        "Health Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Hospitality Services": {
+    "lockup": [
+      "Hospitality Services"
+    ],
+    "profile": {
+      "lines": [
+        "Hospitality",
+        "Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Housing and Residence Life": {
+    "lockup": [
+      "Housing and Residence Life"
+    ],
+    "profile": {
+      "lines": [
+        "Housing and",
+        "Residence Life"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Human Resources": {
+    "lockup": [
+      "Human Resources"
+    ],
+    "profile": {
+      "lines": [
+        "Human Resources"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Information Technology Services": {
+    "lockup": [
+      "Information Technology",
+      "Services"
+    ],
+    "profile": {
+      "lines": [
+        "Information",
+        "Technology Services"
+      ],
+      "fontSize": 11.75
+    }
+  },
+  "Infrastructure Services": {
+    "lockup": [
+      "Infrastructure Services"
+    ],
+    "profile": {
+      "lines": [
+        "Infrastructure",
+        "Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Institutional Research": {
+    "lockup": [
+      "Institutional Research"
+    ],
+    "profile": {
+      "lines": [
+        "Institutional",
+        "Research"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Integrated Science": {
+    "lockup": [
+      "Integrated Science"
+    ],
+    "profile": {
+      "lines": [
+        "Integrated Science"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Interdisciplinary Studies": {
+    "lockup": [
+      "Interdisciplinary Studies"
+    ],
+    "profile": {
+      "lines": [
+        "Interdisciplinary",
+        "Studies"
+      ],
+      "fontSize": 13
+    }
+  },
+  "International Exchanges and Student Programs": {
+    "lockup": [
+      "International Exchanges",
+      "and Student Programs"
+    ],
+    "profile": {
+      "lines": [
+        "International",
+        "Exchanges and",
+        "Student Programs"
+      ],
+      "fontSize": 11
+    }
+  },
+  "Library": {
+    "lockup": [
+      "Library"
+    ],
+    "profile": {
+      "lines": [
+        "Library"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Mathematics and Statistics": {
+    "lockup": [
+      "Mathematics and Statistics"
+    ],
+    "profile": {
+      "lines": [
+        "Mathematics and",
+        "Statistics"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Northern Analytical Laboratory Services": {
+    "lockup": [
+      "Northern Analytical",
+      "Laboratory Services"
+    ],
+    "profile": {
+      "lines": [
+        "Northern Analytical",
+        "Laboratory Services"
+      ],
+      "fontSize": 12.25
+    }
+  },
+  "Northern BC Archives & Special Collections": {
+    "lockup": [
+      "Northern BC Archives",
+      "& Special Collections"
+    ],
+    "profile": {
+      "lines": [
+        "Northern BC Archives",
+        "& Special Collections"
+      ],
+      "fontSize": 11.25
+    }
+  },
+  "Northern BC Graduate Students' Society": {
+    "lockup": [
+      "Northern BC Graduate",
+      "Students' Society"
+    ],
+    "profile": {
+      "lines": [
+        "Northern BC Graduate",
+        "Students' Society"
+      ],
+      "fontSize": 11
+    }
+  },
+  "Northern Medical Program": {
+    "lockup": [
+      "Northern Medical Program"
+    ],
+    "profile": {
+      "lines": [
+        "Northern Medical",
+        "Program"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Northern Studies": {
+    "lockup": [
+      "Northern Studies"
+    ],
+    "profile": {
+      "lines": [
+        "Northern Studies"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Northern Undergraduate Student Society": {
+    "lockup": [
+      "Northern Undergraduate",
+      "Student Society"
+    ],
+    "profile": {
+      "lines": [
+        "Northern",
+        "Undergraduate",
+        "Student Society"
+      ],
+      "fontSize": 11
+    }
+  },
+  "Northwest": {
+    "lockup": [
+      "Northwest"
+    ],
+    "profile": {
+      "lines": [
+        "Northwest"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Office of Graduate Programs": {
+    "lockup": [
+      "Office of Graduate",
+      "Programs"
+    ],
+    "profile": {
+      "lines": [
+        "Office of Graduate",
+        "Programs"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Office of Indigenous Initiatives": {
+    "lockup": [
+      "Office of Indigenous",
+      "Initiatives"
+    ],
+    "profile": {
+      "lines": [
+        "Office of Indigenous",
+        "Initiatives"
+      ],
+      "fontSize": 12
+    }
+  },
+  "Office of Research": {
+    "lockup": [
+      "Office of Research"
+    ],
+    "profile": {
+      "lines": [
+        "Office of Research"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Office of Research and Innovation": {
+    "lockup": [
+      "Office of Research and",
+      "Innovation"
+    ],
+    "profile": {
+      "lines": [
+        "Office of Research",
+        "and Innovation"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Office of Student Recruitment": {
+    "lockup": [
+      "Office of Student",
+      "Recruitment"
+    ],
+    "profile": {
+      "lines": [
+        "Office of Student",
+        "Recruitment"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Office of the Registrar": {
+    "lockup": [
+      "Office of the Registrar"
+    ],
+    "profile": {
+      "lines": [
+        "Office of the",
+        "Registrar"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Parking Services": {
+    "lockup": [
+      "Parking Services"
+    ],
+    "profile": {
+      "lines": [
+        "Parking Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Payroll Services": {
+    "lockup": [
+      "Payroll Services"
+    ],
+    "profile": {
+      "lines": [
+        "Payroll Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Physics": {
+    "lockup": [
+      "Physics"
+    ],
+    "profile": {
+      "lines": [
+        "Physics"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Research Accounting": {
+    "lockup": [
+      "Research Accounting"
+    ],
+    "profile": {
+      "lines": [
+        "Research",
+        "Accounting"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Safety and Risk Management": {
+    "lockup": [
+      "Safety and Risk",
+      "Management"
+    ],
+    "profile": {
+      "lines": [
+        "Safety and Risk",
+        "Management"
+      ],
+      "fontSize": 13
+    }
+  },
+  "School of Business": {
+    "lockup": [
+      "School of Business"
+    ],
+    "profile": {
+      "lines": [
+        "School of",
+        "Business"
+      ],
+      "fontSize": 13
+    }
+  },
+  "School of Education": {
+    "lockup": [
+      "School of Education"
+    ],
+    "profile": {
+      "lines": [
+        "School of",
+        "Education"
+      ],
+      "fontSize": 13
+    }
+  },
+  "School of Engineering": {
+    "lockup": [
+      "School of Engineering"
+    ],
+    "profile": {
+      "lines": [
+        "School of",
+        "Engineering"
+      ],
+      "fontSize": 13
+    }
+  },
+  "School of Health Sciences": {
+    "lockup": [
+      "School of Health Sciences"
+    ],
+    "profile": {
+      "lines": [
+        "School of Health",
+        "Sciences"
+      ],
+      "fontSize": 13
+    }
+  },
+  "School of Nursing": {
+    "lockup": [
+      "School of Nursing"
+    ],
+    "profile": {
+      "lines": [
+        "School of Nursing"
+      ],
+      "fontSize": 13
+    }
+  },
+  "School of Planning and Sustainability": {
+    "lockup": [
+      "School of Planning and",
+      "Sustainability"
+    ],
+    "profile": {
+      "lines": [
+        "School of Planning",
+        "and Sustainability"
+      ],
+      "fontSize": 13
+    }
+  },
+  "School of Social Work": {
+    "lockup": [
+      "School of Social Work"
+    ],
+    "profile": {
+      "lines": [
+        "School of Social",
+        "Work"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Security": {
+    "lockup": [
+      "Security"
+    ],
+    "profile": {
+      "lines": [
+        "Security"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Service Desk": {
+    "lockup": [
+      "Service Desk"
+    ],
+    "profile": {
+      "lines": [
+        "Service Desk"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Student Career Centre": {
+    "lockup": [
+      "Student Career Centre"
+    ],
+    "profile": {
+      "lines": [
+        "Student Career",
+        "Centre"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Student Life & Orientation": {
+    "lockup": [
+      "Student Life & Orientation"
+    ],
+    "profile": {
+      "lines": [
+        "Student Life",
+        "& Orientation"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Student Success": {
+    "lockup": [
+      "Student Success"
+    ],
+    "profile": {
+      "lines": [
+        "Student Success"
+      ],
+      "fontSize": 13
+    }
+  },
+  "Treasury Services": {
+    "lockup": [
+      "Treasury Services"
+    ],
+    "profile": {
+      "lines": [
+        "Treasury Services"
+      ],
+      "fontSize": 13
+    }
+  },
+  "UBC Master of Occupational Therapy (MOT) - Northern and Rural Cohort": {
+    "lockup": [
+      "UBC Master of Occupational",
+      "Therapy (MOT) - Northern",
+      "and Rural Cohort"
+    ],
+    "profile": {
+      "lines": [
+        "UBC Master of Occupational",
+        "Therapy (MOT) - Northern",
+        "and Rural Cohort"
+      ],
+      "fontSize": 8.5
+    }
+  },
+  "UBC Master of Physical Therapy - North": {
+    "lockup": [
+      "UBC Master of Physical",
+      "Therapy - North"
+    ],
+    "profile": {
+      "lines": [
+        "UBC Master of",
+        "Physical Therapy -",
+        "North"
+      ],
+      "fontSize": 11
+    }
+  },
+  "UBC Northern Medical Program (NMP)": {
+    "lockup": [
+      "UBC Northern Medical",
+      "Program (NMP)"
+    ],
+    "profile": {
+      "lines": [
+        "UBC Northern Medical",
+        "Program (NMP)"
+      ],
+      "fontSize": 11
+    }
+  },
+  "UBC Postgraduate Medical Education - Residency Training": {
+    "lockup": [
+      "UBC Postgraduate Medical",
+      "Education - Residency",
+      "Training"
+    ],
+    "profile": {
+      "lines": [
+        "UBC Postgraduate",
+        "Medical Education -",
+        "Residency Training"
+      ],
+      "fontSize": 11
+    }
+  },
+  "Women's and Gender Studies": {
+    "lockup": [
+      "Women's and Gender",
+      "Studies"
+    ],
+    "profile": {
+      "lines": [
+        "Women's and",
+        "Gender Studies"
+      ],
+      "fontSize": 13
+    }
+  }
+}
