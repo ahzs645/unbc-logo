@@ -64,7 +64,7 @@ export {
 export { getEmbeddedFontCss, BRAND_FONT_FAMILY } from './export/fontEmbed.js'
 
 // ── Departments ──────────────────────────────────────────────────────────────────────────────
-export { departmentTypes } from './departments/departmentData.js'
+export { departmentTypes, departmentAlternateNames } from './departments/departmentData.js'
 export {
   departmentPresets,
   departmentPresetGroups,

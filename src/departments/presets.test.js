@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { DEPARTMENT_LINE, measureDepartmentText } from '../logo/logoText.js'
-import { departmentTypes } from './departmentData.js'
+import { departmentAlternateNames, departmentTypes } from './departmentData.js'
 import { departmentPresetGroups, departmentPresets, searchDepartmentPresets } from './presets.js'
 
 // An independent flat walk of the hierarchy, so the test does not lean on a magic count that
@@ -12,10 +12,12 @@ const expectedLabels = () => {
   Object.values(departmentTypes).forEach((typeData) => {
     Object.values(typeData.departments).forEach((mainData) => {
       Object.entries(mainData).forEach(([subName, subData]) => {
-        labels.push(subName)
+        labels.push(subName, ...(departmentAlternateNames[subName] || []))
         // Object children are named sub-units; array children are short aliases, not lockup names.
         if (subData && typeof subData === 'object' && !Array.isArray(subData)) {
-          labels.push(...Object.keys(subData))
+          Object.keys(subData).forEach((subSubName) => {
+            labels.push(subSubName, ...(departmentAlternateNames[subSubName] || []))
+          })
         }
       })
     })
@@ -60,6 +62,27 @@ test('every preset wraps within the lockup', () => {
       )
     })
   })
+})
+
+test('the Library is offered by its full name first, then its short form', () => {
+  const library = searchDepartmentPresets('library')
+  // Label matches lead; the Archives follows as a path match, being part of the Library.
+  assert.deepEqual(library.map((preset) => preset.label), [
+    'Geoffrey R. Weller Library',
+    'Library',
+    'Northern BC Archives & Special Collections'
+  ])
+  assert.equal(library[1].alternateOf, 'Geoffrey R. Weller Library')
+  assert.equal(library[1].sub, 'Geoffrey R. Weller Library')
+
+  const [archives] = searchDepartmentPresets('archives')
+  assert.equal(archives.label, 'Northern BC Archives & Special Collections')
+  assert.equal(archives.sub, 'Geoffrey R. Weller Library')
+})
+
+test('every alternate name belongs to a unit in the hierarchy', () => {
+  const labels = new Set(expectedLabels())
+  Object.keys(departmentAlternateNames).forEach((name) => assert.ok(labels.has(name), `${name} is not a unit`))
 })
 
 test('search matches labels ahead of hierarchy paths', () => {

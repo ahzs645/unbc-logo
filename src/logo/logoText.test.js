@@ -34,6 +34,21 @@ test('wraps the Faculty of Indigenous Studies lockup like the brand reference', 
   )
 })
 
+test('wraps the Archives and Library lockups like their official sub-logos', () => {
+  assert.deepEqual(
+    splitDepartmentText('Northern BC Archives & Special Collections'),
+    ['Northern BC Archives', '& Special Collections']
+  )
+  assert.deepEqual(splitDepartmentText('Geoffrey R. Weller Library'), ['Geoffrey R. Weller Library'])
+})
+
+test('never ends a line on an ampersand', () => {
+  ['Northern BC Archives & Special Collections', 'Research & Graduate Programs & Student Life & More']
+    .forEach((text) => {
+      splitDepartmentText(text).forEach((line) => assert.ok(!line.endsWith('&'), `"${line}" ends on &`))
+    })
+})
+
 test('keeps every configured department line within the logo lockup', () => {
   const departmentNames = collectDepartmentNames(departmentTypes)
 

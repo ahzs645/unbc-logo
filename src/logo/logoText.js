@@ -52,6 +52,15 @@ const wrapDepartmentParagraph = (paragraph, maxWidth) => {
       return
     }
 
+    // An ampersand opens the next line rather than closing this one, as on UNBC's own
+    // "Northern BC Archives / & Special Collections" sub-logo.
+    const lastSpace = currentLine.lastIndexOf(' ')
+    if (lastSpace > 0 && currentLine.slice(lastSpace + 1) === '&') {
+      lines.push(currentLine.slice(0, lastSpace))
+      currentLine = `& ${word}`
+      return
+    }
+
     lines.push(currentLine)
     currentLine = word
   })

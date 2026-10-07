@@ -55,6 +55,9 @@ export const departmentTypes = {
                 "Faculty of Business and Economics": {
                     "School of Business": ["Business"],
                     "Economics": ["Economics"]
+                },
+                "Geoffrey R. Weller Library": {
+                    "Northern BC Archives & Special Collections": ["Archives"]
                 }
             }
         }
@@ -99,4 +102,11 @@ export const departmentTypes = {
             }
         }
     }
+}
+
+// Shorter names a unit's sub-logo is also issued under. These are opt-in, unlike the alias arrays
+// above: an alias is only a search nickname, whereas each name here appears on an official sub-logo
+// (the Library's own unbc.ca sub-logo reads just "Library").
+export const departmentAlternateNames = {
+    "Geoffrey R. Weller Library": ["Library"]
 }
