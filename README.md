@@ -129,10 +129,22 @@ await exportLogo({ mark: 'profile', departmentText: 'Student Life', format: 'png
 | `markColor` | white | Colour of the UNBC letters. |
 | `bandColor` | white | Colour of the caption band. |
 | `textColor` | deep green | Caption colour. |
+| `shape` | `'square'` | `'square'`, or `'circle'` for the circle layout (transparent outside the circle). |
 | `pixelWidth` | – | Sets `width` and `height` (the image is square). |
 
+Both setups from the Graphics Standards Manual (Feb 2020, p. 5) are built in. The **square**
+("Student Life", "MBA") puts the letters on a green panel over the top two thirds. The **circle**
+("Wood Engineering", "Graduate Programs") is drawn for platforms that crop to one. It is a layout
+of its own, not the square cropped: the band starts halfway down, and smaller letters leave room
+for a larger caption that shrinks until every line sits inside the circle.
+
 Most platforms crop avatars to a circle. `findCircleCropOverflow(text)` returns the caption lines
-that crop would clip, and the site previews the circle crop and warns about them.
+that crop would clip from the square, and the site previews the crop and warns about them.
+
+Faculties drop "Faculty of" on avatars, as UNBC's own do ("Indigenous Studies, Social Sciences and
+Humanities"); other names, "School of Engineering" included, print as given.
+`profileCaptionText(name)` applies that, and the site uses it, so one department line serves both
+the lockup and the avatar.
 
 ---
 

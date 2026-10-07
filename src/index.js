@@ -26,8 +26,12 @@ export {
   renderProfileSvg,
   layoutProfileCaption,
   findCircleCropOverflow,
+  profileCaptionText,
+  profileLayout,
   PROFILE_COLORS,
-  PROFILE_LAYOUT
+  PROFILE_LAYOUT,
+  PROFILE_CIRCLE_LAYOUT,
+  PROFILE_LAYOUTS
 } from './profile/renderProfileSvg.js'
 
 // ── Text layout: the wrapping rules the lockup must obey ─────────────────────────────────────

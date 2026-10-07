@@ -20,8 +20,10 @@ export const PROFILE_COLORS = {
   mark: '#ffffff'
 }
 
-// Measured from the 150px reference avatars.
+// Measured from the 150px reference avatars, and matching the square examples in the Graphics
+// Standards Manual (Feb 2020, p. 5: "Student Life", "MBA").
 export const PROFILE_LAYOUT = {
+  shape: 'square',
   size: 150,
   // The green panel covers the top two thirds; the caption band takes the rest.
   panelHeight: 100,
@@ -38,6 +40,43 @@ export const PROFILE_LAYOUT = {
     bottomMargin: 6
   }
 }
+
+// The circle examples in the Graphics Standards Manual (p. 5: "Wood Engineering", "Graduate
+// Programs") are a layout of their own rather than the square cropped: the artwork is the circle,
+// the white band starts halfway down, and smaller letters leave room for a larger caption.
+// Measured from the manual's embedded 662px artwork, scaled to the same 150 units.
+export const PROFILE_CIRCLE_LAYOUT = {
+  shape: 'circle',
+  size: 150,
+  panelHeight: 75,
+  markWidth: 64,
+  // The letters sit a little below the middle of the green half.
+  markCenterY: 40.5,
+  caption: {
+    fontSize: 17.25,
+    lineHeight: 19.75,
+    // The caption block (first cap top to last baseline) is centred on this line. The manual's
+    // two examples sit 6 units apart (cap tops at 83.8 and 90.2); this splits the difference.
+    blockCenter: 102,
+    maxWidth: 116,
+    minFontSize: 9,
+    // Every line keeps this far inside the circle, and below the band's top edge — "Engineering"
+    // runs this close to the edge in the manual's own artwork.
+    inset: 4,
+    bandGap: 6
+  }
+}
+
+export const PROFILE_LAYOUTS = { square: PROFILE_LAYOUT, circle: PROFILE_CIRCLE_LAYOUT }
+
+export const profileLayout = (shape = 'square') => PROFILE_LAYOUTS[shape] || PROFILE_LAYOUT
+
+/**
+ * The name an avatar prints for a department. Faculties drop "Faculty of", as UNBC's own faculty
+ * avatars do ("Indigenous Studies, Social Sciences and Humanities"); every other name — "School of
+ * Engineering" included — is printed as given.
+ */
+export const profileCaptionText = (name = '') => name.replace(/^(\s*)Faculty of\s+/i, '$1')
 
 // The caption is Helvetica Neue Black — the same face as the lockup's department line and UNBC's
 // web display type. Rendered large and downsampled to 150px, Black at 13 units matches the
@@ -66,64 +105,83 @@ const round = (value) => Math.round(value * 100) / 100
 const PROFILE_LINE_OPENERS = ['&']
 
 /**
- * Lays out the caption: wraps it at the largest size (up to the reference 13 units) at which
- * every line fits across the band and the last line clears the bottom edge.
+ * Lays out the caption: wraps it at the largest size (up to the layout's reference size) at
+ * which every line fits — across the band and clear of the bottom edge on the square, inside the
+ * circle on the circle layout.
  *
  * @returns {{ lines: string[], fontSize: number, lineHeight: number, baseline: number,
  *             shrunk: boolean }}
  */
 export const layoutProfileCaption = (text, layout = PROFILE_LAYOUT) => {
-  const { caption, size } = layout
-  const floor = size - caption.bottomMargin
+  const { caption } = layout
+  const circle = layout.shape === 'circle'
 
   const fit = (fontSize) => {
     // splitDepartmentText measures at the lockup's font size; rescale the wrap width to match.
     const scale = DEPARTMENT_LINE.fontSize / fontSize
     const lines = splitDepartmentText(text, caption.maxWidth * scale, { lineOpeners: PROFILE_LINE_OPENERS })
     const lineHeight = caption.lineHeight * fontSize / caption.fontSize
-    const baseline = caption.capTop + fontSize * CAP_HEIGHT
-    const bottom = baseline + (lines.length - 1) * lineHeight + fontSize * DESCENT
-    return { lines, fontSize, lineHeight: round(lineHeight), baseline: round(baseline), bottom }
+    const capHeight = fontSize * CAP_HEIGHT
+    // The square hangs every caption from the same cap line; the circle centres the block.
+    const baseline = circle
+      ? caption.blockCenter - ((lines.length - 1) * lineHeight + capHeight) / 2 + capHeight
+      : caption.capTop + capHeight
+    const result = { lines, fontSize, lineHeight: round(lineHeight), baseline: round(baseline) }
+    return { ...result, fits: circle ? fitsCircle(result, layout) : fitsSquare(result, layout) }
   }
 
   let result = fit(caption.fontSize)
-  while (result.bottom > floor && result.fontSize - FONT_STEP >= caption.minFontSize) {
+  while (!result.fits && result.fontSize - FONT_STEP >= caption.minFontSize) {
     result = fit(result.fontSize - FONT_STEP)
   }
 
-  const { bottom, ...rest } = result
+  const { fits, ...rest } = result
   return { ...rest, shrunk: result.fontSize < caption.fontSize }
 }
 
-/**
- * Most platforms crop avatars to a circle, which cuts into the caption band's lower corners.
- * Returns the caption lines whose ink would fall outside that circle, so a UI can warn before
- * the platform silently clips them.
- */
-export const findCircleCropOverflow = (text, layout = PROFILE_LAYOUT) => {
-  const { lines, fontSize, lineHeight, baseline } = layoutProfileCaption(text, layout)
-  const radius = layout.size / 2
+const fitsSquare = ({ lines, fontSize, lineHeight, baseline }, { size, caption }) =>
+  baseline + (lines.length - 1) * lineHeight + fontSize * DESCENT <= size - caption.bottomMargin
 
-  return lines.filter((line, index) => {
+const fitsCircle = ({ lines, fontSize, lineHeight, baseline }, { size, panelHeight, caption }) => {
+  const top = baseline - fontSize * CAP_HEIGHT
+  if (top < panelHeight + caption.bandGap) return false
+  return overflowingLines({ lines, fontSize, lineHeight, baseline }, size / 2 - caption.inset, size / 2).length === 0
+}
+
+// The lines whose ink strays outside a circle of `radius` centred in the square.
+const overflowingLines = ({ lines, fontSize, lineHeight, baseline }, radius, centre) => (
+  lines.filter((line, index) => {
     const lineBaseline = baseline + index * lineHeight
     // The line's lowest ink is the corner that strays furthest from the centre.
     const lowest = Math.max(
-      Math.abs(lineBaseline - fontSize * CAP_HEIGHT - radius),
-      Math.abs(lineBaseline + fontSize * DESCENT - radius)
+      Math.abs(lineBaseline - fontSize * CAP_HEIGHT - centre),
+      Math.abs(lineBaseline + fontSize * DESCENT - centre)
     )
     if (lowest >= radius) return true
     const halfChord = Math.sqrt(radius ** 2 - lowest ** 2)
     const halfWidth = measureDepartmentText(line) * fontSize / DEPARTMENT_LINE.fontSize / 2
     return halfWidth > halfChord
   })
+)
+
+/**
+ * Most platforms crop avatars to a circle, which cuts into the square layout's lower corners.
+ * Returns the caption lines whose ink would fall outside that circle, so a UI can warn before
+ * the platform silently clips them. The circle layout is drawn to fit, so it reports none.
+ */
+export const findCircleCropOverflow = (text, layout = PROFILE_LAYOUT) => {
+  if (layout.shape === 'circle') return []
+  return overflowingLines(layoutProfileCaption(text, layout), layout.size / 2, layout.size / 2)
 }
 
-const panelFill = (background) => {
+const panelFill = (background, layout) => {
   if (!background || background === 'gradient') {
-    const { size, panelHeight } = PROFILE_LAYOUT
+    const { size } = layout
+    // The glow is brightest behind the letters.
+    const cy = layout.markCenterY ?? layout.panelHeight / 2
     return {
       defs: `<radialGradient id="unbc-profile-glow" gradientUnits="userSpaceOnUse"` +
-        ` cx="${size / 2}" cy="${panelHeight / 2}" r="80">` +
+        ` cx="${size / 2}" cy="${cy}" r="80">` +
         `<stop offset="0" stop-color="${PROFILE_COLORS.glow}"/>` +
         `<stop offset="1" stop-color="${PROFILE_COLORS.deep}"/>` +
         '</radialGradient>',
@@ -134,11 +192,13 @@ const panelFill = (background) => {
 }
 
 /**
- * A square social-media profile picture as a standalone SVG document string.
+ * A social-media profile picture as a standalone SVG document string: the square, or the circle
+ * layout (transparent outside the circle).
  *
  * @param {object} options
  * @param {string} [options.departmentText] Caption under the panel; wraps and shrinks to fit,
  *                                          and honours explicit newlines.
+ * @param {string} [options.shape]          'square' (default) or 'circle'.
  * @param {string} [options.background]     'gradient' (the default green glow) or any colour.
  * @param {string} [options.markColor]      Colour of the UNBC letters.
  * @param {string} [options.bandColor]      Colour of the caption band.
@@ -149,6 +209,7 @@ const panelFill = (background) => {
  */
 export const renderProfileSvg = ({
   departmentText = '',
+  shape = 'square',
   background = 'gradient',
   markColor = PROFILE_COLORS.mark,
   bandColor = PROFILE_COLORS.band,
@@ -158,15 +219,18 @@ export const renderProfileSvg = ({
   fontFamily = LOGO_FONT_FAMILY,
   title
 } = {}) => {
-  const { size, panelHeight, markWidth } = PROFILE_LAYOUT
-  const panel = panelFill(background)
+  const layout = profileLayout(shape)
+  const { size, panelHeight, markWidth } = layout
+  const circle = layout.shape === 'circle'
+  const panel = panelFill(background, layout)
 
   const scale = markWidth / LETTER_BOUNDS.width
+  const markCenterY = layout.markCenterY ?? panelHeight / 2
   const markX = (size - markWidth) / 2 - LETTER_BOUNDS.x * scale
-  const markY = (panelHeight - LETTER_BOUNDS.height * scale) / 2 - LETTER_BOUNDS.y * scale
+  const markY = markCenterY - LETTER_BOUNDS.height * scale / 2 - LETTER_BOUNDS.y * scale
   const letters = recolorMark(UNBC_LETTERS, resolveColor(markColor))
 
-  const { lines, fontSize, lineHeight, baseline } = layoutProfileCaption(departmentText)
+  const { lines, fontSize, lineHeight, baseline } = layoutProfileCaption(departmentText, layout)
   const fill = resolveColor(textColor)
   const captionMarkup = lines.map((line, index) => (
     `<text x="${size / 2}" y="${round(baseline + index * lineHeight)}" text-anchor="middle"` +
@@ -175,14 +239,19 @@ export const renderProfileSvg = ({
   )).join('')
 
   const dimensions = pixelWidth ? ` width="${pixelWidth}" height="${pixelWidth}"` : ''
-  const defs = panel.defs + (fontCss ? `<style>${fontCss}</style>` : '')
+  const clip = circle
+    ? `<clipPath id="unbc-profile-circle"><circle cx="${size / 2}" cy="${size / 2}" r="${size / 2}"/></clipPath>`
+    : ''
+  const defs = panel.defs + clip + (fontCss ? `<style>${fontCss}</style>` : '')
   const label = title ?? ['UNBC', ...lines].join(' ')
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}"${dimensions}>` +
     `<title>${escapeXml(label)}</title>` +
     (defs ? `<defs>${defs}</defs>` : '') +
+    (circle ? '<g clip-path="url(#unbc-profile-circle)">' : '') +
     `<rect width="${size}" height="${size}" fill="${resolveColor(bandColor)}"/>` +
     `<rect width="${size}" height="${panelHeight}" fill="${panel.fill}"/>` +
+    (circle ? '</g>' : '') +
     `<g transform="translate(${round(markX)} ${round(markY)}) scale(${round(scale * 1000) / 1000})">` +
     letters + '</g>' +
     captionMarkup +

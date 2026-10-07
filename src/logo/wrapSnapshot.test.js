@@ -17,9 +17,11 @@ test('no department line wraps differently from the committed snapshot', () => {
     if (JSON.stringify(was.lockup) !== JSON.stringify(now.lockup)) {
       changes.push(`  lockup   "${name}"\n    was ${JSON.stringify(was.lockup)}\n    now ${JSON.stringify(now.lockup)}`)
     }
-    if (JSON.stringify(was.profile) !== JSON.stringify(now.profile)) {
-      changes.push(`  profile  "${name}"\n    was ${JSON.stringify(was.profile)}\n    now ${JSON.stringify(now.profile)}`)
-    }
+    ;['profile', 'profileCircle'].forEach((key) => {
+      if (JSON.stringify(was[key]) !== JSON.stringify(now[key])) {
+        changes.push(`  ${key}  "${name}"\n    was ${JSON.stringify(was[key])}\n    now ${JSON.stringify(now[key])}`)
+      }
+    })
     return changes
   })
 
