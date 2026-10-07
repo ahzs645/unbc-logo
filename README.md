@@ -210,7 +210,7 @@ support is not universal.
 
 ## Department presets
 
-The full UNBC hierarchy ships as data, flattened into 61 ready-to-use lockup presets:
+The full UNBC hierarchy ships as data, flattened into ready-to-use lockup presets (66 at present):
 
 ```js
 import { departmentPresets, searchDepartmentPresets } from '@unbc/logo'
@@ -223,7 +223,32 @@ Each preset carries its pre-wrapped `lines`, so a picker can show how tall a loc
 without re-measuring. Presets are *derived* from `departmentData.js` rather than duplicated, so
 adding a department updates both the drill-down selector and the preset list.
 
-`DepartmentSelector` (React) provides the searchable drill-down UI.
+Some units also have an official short form, listed in `departmentAlternateNames` — the
+Geoffrey R. Weller Library's sub-logo is also issued as just "Library". Each short form is a preset
+of its own, straight after the full name, and `fullDepartmentName('Library')` leads back to the
+unit.
+
+### Walking the hierarchy
+
+The generator site picks a department the way the door-sign generator does: a search, then the
+chosen path one level per row (area › portfolio › faculty or office › department or unit), each
+level a dropdown of its siblings. The helpers behind it are exported for any app that wants the
+same picker:
+
+```js
+import { DEPARTMENT_LEVELS, departmentChildren, findDepartmentPath, departmentTypes } from '@unbc/logo'
+
+findDepartmentPath(departmentTypes, 'Health Research Institute')
+// ['administrative', 'Vice-President, Research and Innovation', 'Health Research Institute']
+departmentChildren(departmentTypes, ['administrative', 'President'])
+// ['Athletics', 'Office of Indigenous Initiatives']
+```
+
+`resolveDepartmentPath()` turns a stored selection back into a path (or reports a name that isn't
+in the list), and `selectDepartmentLevel()` gives the selection after choosing a level — the levels
+above are kept and the ones below cleared.
+
+`DepartmentSelector` (React) is the older drill-down UI, kept for existing callers.
 
 ---
 

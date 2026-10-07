@@ -14,11 +14,11 @@ import {
   DepartmentField,
   ExportActions,
   FormatField,
-  PresetSearch,
   StatusNotice,
   useColorChoice,
   useStatus
 } from './controls.jsx'
+import { DepartmentPicker } from './DepartmentPicker.jsx'
 
 const PANEL_CHOICES = [
   { value: 'gradient', label: 'Green glow', swatch: PROFILE_COLORS.glow },
@@ -103,13 +103,13 @@ export const ProfileGenerator = ({ departmentText, setDepartmentText }) => {
       </section>
 
       <section className="panel controls" aria-label="Profile picture options">
+        <DepartmentPicker id="profile-department-picker" value={departmentText} onChange={setDepartmentText} />
         <DepartmentField
           id="profile-department"
           value={departmentText}
           onChange={setDepartmentText}
           hint="Centred under the logo. Long names wrap and shrink to fit; press Enter to force a line break."
         />
-        <PresetSearch id="profile-preset-search" onPick={setDepartmentText} />
 
         <div className="field">
           <span className="field__label">Preview</span>

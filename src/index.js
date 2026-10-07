@@ -77,6 +77,15 @@ export {
   toDepartmentSelection,
   EMPTY_DEPARTMENT_SELECTION
 } from './departments/hierarchy.js'
+export {
+  DEPARTMENT_LEVELS,
+  departmentChildren,
+  departmentAreaName,
+  findDepartmentPath,
+  resolveDepartmentPath,
+  selectDepartmentLevel,
+  fullDepartmentName
+} from './departments/departmentPath.js'
 
 // ── React components ─────────────────────────────────────────────────────────────────────────
 export { UnbcLogoMark } from './logo/UnbcLogoMark.jsx'
