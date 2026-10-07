@@ -9,32 +9,32 @@ import {
   selectDepartmentLevel
 } from './departmentPath.js'
 
-const NALS_PATH = [
+const PAYROLL_PATH = [
   'administrative',
-  'Vice-President, Research and Innovation',
-  'Office of Research and Innovation',
-  'Northern Analytical Laboratory Services'
+  'Vice-President, Finance and Administration',
+  'Financial Services',
+  'Payroll Services'
 ]
 
 test('lists the choices one level down, and nothing under a leaf', () => {
   assert.deepEqual(departmentChildren(departmentTypes, []), ['academic', 'administrative'])
-  assert.ok(departmentChildren(departmentTypes, NALS_PATH.slice(0, 3)).includes(NALS_PATH[3]))
-  assert.deepEqual(departmentChildren(departmentTypes, NALS_PATH), [])
+  assert.ok(departmentChildren(departmentTypes, PAYROLL_PATH.slice(0, 3)).includes(PAYROLL_PATH[3]))
+  assert.deepEqual(departmentChildren(departmentTypes, PAYROLL_PATH), [])
   assert.deepEqual(departmentChildren(departmentTypes, ['administrative', 'President', 'Athletics']), [])
 })
 
 test('finds a department saved by its name alone', () => {
-  assert.deepEqual(findDepartmentPath(departmentTypes, 'Northern Analytical Laboratory Services'), NALS_PATH)
-  assert.deepEqual(resolveDepartmentPath(departmentTypes, { mainDepartment: 'Northern Analytical Laboratory Services' }), {
-    path: NALS_PATH,
+  assert.deepEqual(findDepartmentPath(departmentTypes, 'Payroll Services'), PAYROLL_PATH)
+  assert.deepEqual(resolveDepartmentPath(departmentTypes, { mainDepartment: 'Payroll Services' }), {
+    path: PAYROLL_PATH,
     custom: ''
   })
   assert.equal(findDepartmentPath(departmentTypes, 'administrative'), null)
 })
 
 test('keeps a full path as stored, and reports a name that is not in the list', () => {
-  const selection = selectDepartmentLevel(NALS_PATH, 3, NALS_PATH[3])
-  assert.deepEqual(resolveDepartmentPath(departmentTypes, selection), { path: NALS_PATH, custom: '' })
+  const selection = selectDepartmentLevel(PAYROLL_PATH, 3, PAYROLL_PATH[3])
+  assert.deepEqual(resolveDepartmentPath(departmentTypes, selection), { path: PAYROLL_PATH, custom: '' })
   assert.deepEqual(resolveDepartmentPath(departmentTypes, { departmentType: 'academic' }), { path: ['academic'], custom: '' })
   assert.deepEqual(resolveDepartmentPath(departmentTypes, { mainDepartment: 'Northern Medical Program' }), {
     path: [],
@@ -44,16 +44,16 @@ test('keeps a full path as stored, and reports a name that is not in the list', 
 })
 
 test('choosing a level keeps the ones above and clears the ones below', () => {
-  assert.deepEqual(selectDepartmentLevel(NALS_PATH, 2, 'Development'), {
+  assert.deepEqual(selectDepartmentLevel(PAYROLL_PATH, 2, 'Human Resources'), {
     departmentType: 'administrative',
-    mainDepartment: 'Vice-President, Research and Innovation',
-    subDepartment: 'Development',
+    mainDepartment: 'Vice-President, Finance and Administration',
+    subDepartment: 'Human Resources',
     subSubDepartment: ''
   })
-  assert.deepEqual(selectDepartmentLevel(NALS_PATH, 3, ''), {
+  assert.deepEqual(selectDepartmentLevel(PAYROLL_PATH, 3, ''), {
     departmentType: 'administrative',
-    mainDepartment: 'Vice-President, Research and Innovation',
-    subDepartment: 'Office of Research and Innovation',
+    mainDepartment: 'Vice-President, Finance and Administration',
+    subDepartment: 'Financial Services',
     subSubDepartment: ''
   })
 })
@@ -65,5 +65,26 @@ test('a short-form name leads back to its full unit', () => {
     'academic',
     'Provost and Vice-President, Academic',
     'Geoffrey R. Weller Library'
+  ])
+})
+
+test('every name in the hierarchy is unique, so a name alone finds its unit', () => {
+  const seen = new Map()
+  const walk = (path) => departmentChildren(departmentTypes, path).forEach((child) => {
+    const next = [...path, child]
+    if (path.length > 0) {
+      assert.ok(!seen.has(child), `"${child}" appears under both ${seen.get(child)} and ${path.join(' › ')}`)
+      seen.set(child, path.join(' › '))
+    }
+    walk(next)
+  })
+  walk([])
+})
+
+test('Northern Analytical Laboratory Services sits with the Provost, as UNBC lists it', () => {
+  assert.deepEqual(findDepartmentPath(departmentTypes, 'Northern Analytical Laboratory Services'), [
+    'academic',
+    'Provost and Vice-President, Academic',
+    'Northern Analytical Laboratory Services'
   ])
 })

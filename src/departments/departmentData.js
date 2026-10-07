@@ -56,8 +56,32 @@ export const departmentTypes = {
                     "School of Business": ["Business"],
                     "Economics": ["Economics"]
                 },
+                // Student service departments, in the order of unbc.ca/about-unbc/student-service-departments.
+                // That page nests a few units a level deeper (Counselling Centre and Health Services under
+                // the Health and Wellness Centre, Co-operative Education under the Student Career Centre);
+                // the hierarchy stops at four levels, so they sit beside their parent unit instead.
+                "Centre for Teaching, Learning and Technology": ["CTLT"],
+                "Chemstores": ["Chemstores"],
                 "Geoffrey R. Weller Library": {
                     "Northern BC Archives & Special Collections": ["Archives"]
+                },
+                "Office of Student Recruitment": ["Recruitment"],
+                "Northern Analytical Laboratory Services": ["NALS"],
+                "Office of the Registrar": ["Registrar"],
+                "Office of Graduate Programs": ["Graduate Programs"],
+                "Student Success": {
+                    "Academic Advising": ["Advising"],
+                    "Academic Success Centre": ["Success Centre"],
+                    "Access Resource Centre": ["Accessibility"],
+                    "Financial Aid": ["Awards"],
+                    "First Nations Centre": ["FNC"],
+                    "Health and Wellness Centre": ["Wellness"],
+                    "Counselling Centre": ["Counselling"],
+                    "Health Services": ["Health Services"],
+                    "Housing and Residence Life": ["Housing"],
+                    "International Exchanges and Student Programs": ["International"],
+                    "Student Career Centre": ["Careers"],
+                    "Co-operative Education": ["Co-op"]
                 }
             }
         }
@@ -97,9 +121,7 @@ export const departmentTypes = {
                 "Alumni Relations": ["Alumni Relations"],
                 "Communications and Marketing": ["Communications"],
                 "Health Research Institute": ["HRI"],
-                "Office of Research and Innovation": {
-                    "Northern Analytical Laboratory Services": ["NALS"]
-                },
+                "Office of Research and Innovation": ["Research"],
                 "Development": ["Development"]
             }
         }
@@ -110,5 +132,9 @@ export const departmentTypes = {
 // above: an alias is only a search nickname, whereas each name here appears on an official sub-logo
 // (the Library's own unbc.ca sub-logo reads just "Library").
 export const departmentAlternateNames = {
-    "Geoffrey R. Weller Library": ["Library"]
+    "Geoffrey R. Weller Library": ["Library"],
+    // The Graphics Standards Manual's profile-image examples read "Graduate Programs".
+    "Office of Graduate Programs": ["Graduate Programs"],
+    // The Career Centre's sub-logo drops "Student".
+    "Student Career Centre": ["Career Centre"]
 }
